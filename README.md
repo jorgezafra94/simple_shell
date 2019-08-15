@@ -1,1 +1,1 @@
-# Simple Shell changed by me
+# Simple Shell George

@@ -6,7 +6,7 @@
  * @new_size: new number of Bytes
  * Return: nothing
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *p = NULL;
 	unsigned int i;

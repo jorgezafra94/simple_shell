@@ -2,29 +2,23 @@
 /**
  * _getline - function to read what the user writes
  */
-void _getline(void)
+char  *_getline(void)
 {
-	char s, *buffer;
-	int pos = 0, size = 1204, r = 1;
+	char *line = NULL;
+	ssize_t bufsize = 0, num = 1, pos = 0;
 
-	write(STDOUT_FILENO,"$ ", 2);
-        buffer = malloc(sizeof(char) * size);
-	if (!buffer)
+	while (num != -1)
 	{
-	 	dprintf(STDERR_FILENO, "Error: There is no sufficient memory");
-	 	exit(98);
+		printf("$ ");
+		num = getline(&line, &bufsize, stdin);
+		if (!(line[0] == '\n'))
+		{
+			while (line[pos] != '\0')
+			{
+				if (line[pos] == '\n')
+					return line;
+				pos++;
+			}
+		}
 	}
-
-	while (1)
-	{
-		r = read(STDIN_FILENO, buffer, 1024);
-		write(STDOUT_FILENO, buffer, 1024);
-		return;
-	}
-}
-
-int main (void)
-{
-	_getline();
-	return (0);
-}
+}	

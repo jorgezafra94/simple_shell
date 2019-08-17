@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "holberton.h"
 /**
  * _realloc - change the size and copy the content

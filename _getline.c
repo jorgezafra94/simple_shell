@@ -9,7 +9,7 @@ char  *_getline(void)
 	ssize_t bufsize = 0, num = 0, pos = 0;
 
 /* this step is for not get an uninitialized variable in valgrind*/
-	write(STDOUT_FILENO, "$ ", 2);
+	write(STDOUT_FILENO, "#cisfun$ ", 9);
 	num = getline(&line, &bufsize, stdin);
 /*infinity loop while is different of EOF or error*/
 	while (num != -1)
@@ -24,7 +24,7 @@ char  *_getline(void)
 				pos++;
 			}
 		}
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		num = getline(&line, &bufsize, stdin);
 	}
 /* to get an end of line when the shell finish*/

@@ -34,6 +34,5 @@ void _forky(char **p, char *line, int a)
 	else
 	{
 		wait(&status);
-		printf("Oh, it's all better now\n");
 	}
 }

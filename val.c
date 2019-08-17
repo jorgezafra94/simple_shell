@@ -14,9 +14,10 @@ int main(void)
 		args = parsing(line);
 		if (args == NULL)
 			return (0);
+		args = checkbin(args);
 		for (i = 0; args[i] != NULL; i++)
-			printf("%s\n", args[i]);
-	     	_forky(args, line,  i);
+			;
+		_forky(args, line,  i);
 		free(line);
 	        free_grid(args, i);
 	}

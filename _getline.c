@@ -14,6 +14,7 @@ char  *_getline(void)
 /*infinity loop while is different of EOF or error*/
 	while (num != -1)
 	{
+		_isexit(line);
 		pos = 0;
 		if (!(line[0] == '\n'))
 		{

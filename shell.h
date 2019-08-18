@@ -18,5 +18,6 @@ void _forky(char **p, char *line, int a);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **checkbin(char **b);
 void *_realloc2(char *ptr, unsigned int old_size, unsigned int new_size);
+void _isexit(char *p);
 
 #endif

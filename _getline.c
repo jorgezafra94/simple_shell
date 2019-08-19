@@ -13,6 +13,8 @@ char  *_getline(void)
 	num = getline(&line, &bufsize, stdin);
 /* receive a signal and ignores*/
 	signal(SIGINT, _signal);
+/* print list of environment varibales*/
+	_env();
 /* infinity loop while is different of EOF or error*/
 	while (num != -1)
 	{

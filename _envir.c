@@ -23,7 +23,7 @@ int _isenv(char *p)
                 }
                 if (cont == 3)
                 {
-                        _env((char **)p);
+                        _env();
                         return (1);
                 }
         }
@@ -32,7 +32,7 @@ int _isenv(char *p)
  * _env - function to print the environment
  * @environ:.
  */
-void _env(char **environ)
+void _env(void)
 {
         int i;
 

@@ -12,6 +12,7 @@
 
 extern char **environ;
 
+int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 char *_getline(void);
 char **parsing(char *line);

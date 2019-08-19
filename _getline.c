@@ -11,11 +11,12 @@ char  *_getline(void)
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDOUT_FILENO, "#cisfun$ ", 9);
 	num = getline(&line, &bufsize, stdin);
-/* print list of environment varibales*/
-	_env();
 /* infinity loop while is different of EOF or error*/
 	while (num != -1)
 	{
+/* print list of environment varibales*/
+		_isenv(line);
+/* terminate when input is exit */
 		_isexit(line);
 		pos = 0;
 		if (!(line[0] == '\n'))

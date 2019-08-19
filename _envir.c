@@ -9,36 +9,37 @@ int _isenv(char *p)
         char str[4] = "env";
         int i = 0, j = 0, cont = 0;
 
-        while (p[j] != '\0')
-        {
-                j++;
-        }
-        if (j == 4)
-        {
-                while (i < 3)
-                {
-                        if(p[i] == str[i])
-                                cont++;
-                        i++;
-                }
-                if (cont == 3)
-                {
-                        _env();
-                        return (1);
-                }
-        }
+	while (p[j] != '\0')
+	{
+		j++;
+	}
+	if (j == 4)
+	{
+		while (i < 3)
+		{
+			if(p[i] == str[i])
+				cont++;
+			i++;
+		}
+		if (cont == 3)
+		{
+			_env(str);
+			return (cont);
+		}
+	}
 }
 /**
  * _env - function to print the environment
  * @environ: points to an array of pointers to strings called the "environment"
  */
-void _env(void)
+void _env(char *p)
 {
-        int i;
+	int i;
+	(void)p;
 
-        for (i = 0; environ[i] != NULL; i++)
-        {
-                write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-                write(STDOUT_FILENO, "\n", 1);
-        }
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+	}
 }

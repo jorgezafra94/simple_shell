@@ -6,6 +6,8 @@ int main(void)
 	char **args = NULL;
         int status = 0, i = 0;
 
+/* receive a signal and ignores*/
+	signal(SIGINT, _signal);
 	while (1)
 	{
 		line = _getline();

@@ -11,7 +11,9 @@ char  *_getline(void)
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDOUT_FILENO, "#cisfun$ ", 9);
 	num = getline(&line, &bufsize, stdin);
-/*infinity loop while is different of EOF or error*/
+/* receive a signal and ignores*/
+	signal(SIGINT, _signal);
+/* infinity loop while is different of EOF or error*/
 	while (num != -1)
 	{
 		_isexit(line);

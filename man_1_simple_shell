@@ -1,0 +1,34 @@
+.\" Manpage for simple_shell
+
+.TH man 1 "28 August 2019" "1.0" "Manual page for Shell"
+
+.SH NAME
+.B
+Shell - Command language interpreter
+
+.SH SYNOPSIS
+hsh [filename]
+
+.SH DESCRIPTION
+Command language interpreter that executes commands read from the standard input or from a file.
+
+.SH BUILTIN COMMANDS
+Each builtin command is executed directly in the shell
+.TP
+.B \fIenv\fR - Display all the enviroment variables.
+.TP
+.B \fIexit\fR - Terminate the shell process with Ctrl+D (EOF) or with exit.
+
+.SH ENVIRONMENT
+Environment variables
+.TP
+.B \fIpwd\fR - Display the absolute pathname for the current directory.
+
+.SH SEE ALSO
+chdir (2), close (2), execve (2), exit (3), fork (2), free (3), getcwd (3 getcwd), getline (3), malloc (3), open (2), perror (3), read (2), signal (2), strtok (3), wait (2), waitpid (2), write (2)
+
+.SH BUGS
+Not yet.
+
+.SH AUTHOR
+Written by Jorge Zafra, Diego López

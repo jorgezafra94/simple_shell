@@ -1,25 +1,6 @@
 #include "shell.h"
 
 /**
- * _strlen - length of the string
- * @str: pointer to string
- * Return: 0.
- */
-
-unsigned int _strlen(char *str)
-{
-	unsigned int length;
-
-	length = 0;
-	while (str[length] != '\0')
-	{
-		length++;
-	}
-	return (length);
-}
-
-
-/**
  * checkbin - checks if arg[0] has /bin/
  * @b: 
  * Return: 0.

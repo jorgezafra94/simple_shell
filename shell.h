@@ -24,6 +24,6 @@ void *_realloc2(char *ptr, unsigned int old_size, unsigned int new_size);
 void _isexit(char *p);
 void _signal(int s);
 
-void _env(char **environ);
+void _env(void);
 
 #endif

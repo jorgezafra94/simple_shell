@@ -10,6 +10,8 @@
 #include <string.h>
 #include <signal.h>
 
+extern char **environ;
+
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 char *_getline(void);
 char **parsing(char *line);

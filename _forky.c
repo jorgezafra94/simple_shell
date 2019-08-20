@@ -21,14 +21,14 @@ void _forky(char **p, char *line, int a)
 	}
 	if (child_pid == 0)
 	{
-		printf("Before execve\n");
+		/*printf("Before execve\n");*/
 		if (execve(p[0], p, NULL) == -1)
 		{
 			perror("Error:");
 		}
 		free(line);
 		free_grid(p, a);
-		printf("After execve\n");
+		/*printf("After execve\n");*/
 		exit(127);
 	}
 	else

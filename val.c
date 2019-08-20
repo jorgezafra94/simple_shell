@@ -1,13 +1,24 @@
 #include "shell.h"
 
+int revision(char **p)
+{
+	int valenv = 0, valcd = 0, other = -1;
+
+	_isexit(p);
+
+	if ((valenv = _isenv(p)) == 0)
+		return (valenv);
+	if ((valcd = _iscd(p)) == 0)
+		return (valcd);
+	return (other);
+}
+
 int main(void)
 {
 	char *line = NULL;
 	char **args = NULL;
-        int status = 0, i = 0;
+        int status = 0, value = 1, i = 0;
 
-/* receive a signal and ignores*/
-	signal(SIGINT, _signal);
 	while (1)
 	{
 		line = _getline();
@@ -16,10 +27,14 @@ int main(void)
 		args = parsing(line);
 		if (args == NULL)
 			return (0);
-		args = checkbin(args);
-		for (i = 0; args[i] != NULL; i++)
-			;
-		_forky(args, line,  i);
+		value = revision(args);
+		if (value != 0)
+		{
+			args = checkbin(args);
+			for (i = 0; args[i] != NULL; i++)
+				;
+			_forky(args, line,  i);
+		}
 		free(line);
 	        free_grid(args, i);
 	}

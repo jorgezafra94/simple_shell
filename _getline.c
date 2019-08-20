@@ -10,14 +10,13 @@ char  *_getline(void)
 
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDOUT_FILENO, "#cisfun$ ", 9);
+/*verify the Crtl+c Interrupt Signal*/
+	signal(SIGINT, _signal);
 	num = getline(&line, &bufsize, stdin);
 /* infinity loop while is different of EOF or error*/
 	while (num != -1)
 	{
-/* print list of environment varibales*/
-		_isenv(line);
 /* terminate when input is exit */
-		_isexit(line);
 		pos = 0;
 		if (!(line[0] == '\n'))
 		{
@@ -29,6 +28,7 @@ char  *_getline(void)
 			}
 		}
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		signal(SIGINT, _signal);
 		num = getline(&line, &bufsize, stdin);
 	}
 /* to get an end of line when the shell finish*/

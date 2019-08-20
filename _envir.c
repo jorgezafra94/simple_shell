@@ -3,30 +3,32 @@
 /**
  * _isenv - finds if line input is env
  * @p: input of user
+ * Return: -1 if fails or 0 if success
  */
-int _isenv(char *p)
+int _isenv(char **p)
 {
         char str[4] = "env";
         int i = 0, j = 0, cont = 0;
 
-	while (p[j] != '\0')
+	while (p[0][j] != '\0')
 	{
 		j++;
 	}
-	if (j == 4)
+	if (j == 3)
 	{
 		while (i < 3)
 		{
-			if(p[i] == str[i])
+			if(p[0][i] == str[i])
 				cont++;
 			i++;
 		}
 		if (cont == 3)
 		{
-			_env(str);
-			return (cont);
+			_env(p[0]);
+			return (0);
 		}
 	}
+	return (-1);
 }
 /**
  * _env - function to print the environment

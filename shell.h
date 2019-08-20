@@ -28,5 +28,6 @@ int _isenv(char **p);
 void _env(char *p);
 int _cd(char *a);
 int _iscd(char **p);
+char *_gethome(void);
 
 #endif

@@ -3,6 +3,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -12,6 +13,7 @@
 
 extern char **environ;
 
+char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 char *_getline(void);
@@ -21,7 +23,7 @@ void free_grid(char **grid, int height);
 void _forky(char **p, char *line, int a);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **checkbin(char **b);
-void *_realloc2(char *ptr, unsigned int old_size, unsigned int new_size);
+void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size);
 void _isexit(char **p);
 void _signal(int s);
 int _isenv(char **p);

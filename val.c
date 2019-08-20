@@ -9,7 +9,7 @@ int revision(char **p)
 	if ((valenv = _isenv(p)) == 0)
 		return (valenv);
 	if ((valcd = _iscd(p)) == 0)
-		return (valcd);
+	  return (valcd);
 	return (other);
 }
 
@@ -17,7 +17,7 @@ int main(void)
 {
 	char *line = NULL;
 	char **args = NULL;
-        int status = 0, value = 1, i = 0;
+        int value = 1, i = 0;
 
 	while (1)
 	{
@@ -27,12 +27,12 @@ int main(void)
 		args = parsing(line);
 		if (args == NULL)
 			return (0);
+		for (i = 0; args[i] != NULL; i++)
+			;
 		value = revision(args);
 		if (value != 0)
 		{
 			args = checkbin(args);
-			for (i = 0; args[i] != NULL; i++)
-				;
 			_forky(args, line,  i);
 		}
 		free(line);

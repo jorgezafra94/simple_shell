@@ -38,7 +38,6 @@ int _iscd(char **p)
 int _cd(char *a)
 {
 	int valor = -1, i;
-	char *ptr = NULL;
 	static char buf[2048];
 	static int w = 0;
 	char *aux2;
@@ -55,7 +54,7 @@ int _cd(char *a)
 	}
 	if (a == NULL)
 	{
-		ptr = getcwd(buf, 2048);
+		getcwd(buf, 2048);
 		valor = chdir((const char *)_gethome());
 		return (valor);
 	}

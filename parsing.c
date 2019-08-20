@@ -29,7 +29,7 @@ int Counter(char *L, char *lim)
  */
 char **parsing(char *line)
 {
-	char *token = NULL, **p = NULL, *str;
+	char *token = NULL, **p = NULL;
 	int length = 0, j = 0, i = 0, buffsize = 0;
 
 	if (line == NULL)
@@ -57,7 +57,6 @@ char **parsing(char *line)
 /*fill the pointer with the content of token*/
 		for (i = 0; i < length; i++)
 			p[j][i] = token[i];
-		p[j][i] == '\0';
 		length = 0;
 		j++;
 /*get the next element*/

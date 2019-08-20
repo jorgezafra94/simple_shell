@@ -39,14 +39,24 @@ int _cd(char *a)
 {
 	int valor = -1, i;
 	char *ptr = NULL;
-	static char buf[2048] = "/home/vagrant";
+	static char buf[2048];
+	static int w = 0;
+	char *aux2;
 	char aux[2048];
 
-
+	if (w == 0)
+	{
+		aux2 = _gethome();
+		while (aux2[w] != '\0')
+		{
+			buf[w] = aux2[w];
+			w++;
+		}
+	}
 	if (a == NULL)
 	{
 		ptr = getcwd(buf, 2048);
-		valor = chdir("/home/vagrant");
+		valor = chdir((const char *)_gethome());
 		return (valor);
 	}
 	else if (a[0] == '-' && a[1] == '\0')

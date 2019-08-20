@@ -6,7 +6,8 @@
 char  *_getline(void)
 {
 	char *line = NULL;
-	ssize_t bufsize = 0, num = 0, pos = 0;
+	size_t bufsize = 0;
+	int num = 0, pos = 0;
 
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDOUT_FILENO, "#cisfun$ ", 9);

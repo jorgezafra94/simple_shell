@@ -1,51 +1,56 @@
 #include "shell.h"
 /**
  * _realloc - change the size and copy the content
- * @ptr: malloc pointer to reallocate
+ * @p: malloc pointer to reallocate
  * @old_size: old number of bytes
  * @new_size: new number of Bytes
  * Return: nothing
  */
-void *_realloc2(char *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size)
 {
-	char *p = NULL;
-	char bin[6] = "/bin/";
-	unsigned int i;
+	char *pa = NULL;
+	unsigned int i, j = 0;
 
 	if (new_size == old_size)
-		return (ptr);
-
-	if (ptr == NULL)
-	{
-		p = _calloc(new_size + 1, sizeof(char));
-		if (!p)
-			return (NULL);
 		return (p);
-	}
-	if (new_size == 0 && ptr != NULL)
+
+	if (p == NULL || a == NULL)
 	{
-		free(ptr);
+		pa = _calloc(new_size + 1, sizeof(char));
+		if (!pa)
+			return (NULL);
+		return (pa);
+	}
+
+	while (a[j] != '\0')
+		j++;
+
+	if (new_size == 0 && p != NULL)
+	{
+		free(p);
 		return (NULL);
 	}
 	if (new_size > old_size)
 	{
-		p = _calloc(new_size + 1, sizeof(char));
-		if (!p)
+		pa = _calloc(new_size + 1, sizeof(char));
+		if (!pa)
 			return (NULL);
-		for (i = 0; i < (new_size - old_size); i++)
-			p[i] = bin[i];
+		for (i = 0; i < j; i++)
+		{
+			pa[i] = a[i];
+		}
 		for (; i <= new_size; i++)
-			p[i] = *((char *)ptr + (i - (new_size - old_size)));
-		free(ptr);
+			pa[i] = *((char *)p + (i - j));
+		free(p);
 	}
 	else
 	{
-		p = _calloc(new_size, sizeof(char));
-		if (!p)
+		pa = _calloc(new_size, sizeof(char));
+		if (!pa)
 			return (NULL);
 		for (i = 0; i < new_size; i++)
-			p[i] = *((char *)ptr + i);
-		free(ptr);
+			pa[i] = *((char *)p + i);
+		free(p);
 	}
-	return (p);
+	return (pa);
 }

@@ -22,21 +22,25 @@ int main(void)
 	while (1)
 	{
 		line = _getline();
-		if (line == NULL)
-			return (0);
 		args = parsing(line);
-		if (args == NULL)
-			return (0);
-		for (i = 0; args[i] != NULL; i++)
-			;
-		value = revision(args);
-		if (value != 0)
+		if (args)
 		{
-			args = checkbin(args);
-			_forky(args, line,  i);
+			for (i = 0; args[i] != NULL; i++)
+				;
+			value = revision(args);
+			if (value != 0)
+			{
+				args = checkbin(args);
+				if (args)
+					_forky(args, line,  i);
+			}
+			free_grid(args, i);
+			free(line);
 		}
-		free(line);
-	        free_grid(args, i);
+		else
+		{
+			fflush(STDIN_FILENO);
+		}
 	}
 		return (0);
 }

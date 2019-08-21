@@ -61,6 +61,8 @@ int _cd(char *a)
 	else if (a[0] == '-' && a[1] == '\0')
 	{
 		getcwd(aux, 2048);
+		write(STDOUT_FILENO, buf, 2048);
+		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
 		for (i = 0; i < 2048; i++)
 			buf[i] = aux[i];

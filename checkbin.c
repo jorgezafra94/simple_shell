@@ -46,8 +46,11 @@ char *_getpwd(void)
 char *_verifypath(char *path, char *pwd)
 {
 	char *newpath = NULL, *str1 = NULL, *str2 = NULL;
-	char dosp = ':';	
+	char dosp = ':';
 	int cont, pa, pw, k1, k2;
+
+	if (path == NULL || pwd == NULL)
+		return (NULL);
 
 	for (pw = 0; pwd[pw] != '\0'; pw++)
 		;
@@ -57,13 +60,10 @@ char *_verifypath(char *path, char *pwd)
 	{
 		if (path[0] == dosp)
 		{
-			newpath = _calloc(pa + pw + 1, sizeof(char));
-			if (newpath == NULL)
-				return (NULL);
 			newpath = str_concat(pwd, path);
 			return (newpath);
 		}
-		if (path[cont] == dosp && path[cont + 1] == dosp)
+		else if(path[cont] == dosp && path[cont + 1] == dosp)
 		{
 			str1 = _calloc(pa + 1, sizeof(char));
 			if (!str1)
@@ -75,11 +75,10 @@ char *_verifypath(char *path, char *pwd)
 				str1[k1] = path[k1];
 			for (k2 = 0; path[k1] != '\0'; k2++, k1++)
 				str2[k2] = path[k1];
-			newpath = _calloc(pa + pw + 1, sizeof(char));
-			if (!newpath)
-				return (NULL);
 			newpath = str_concat(pwd, str2);
-			newpath = _realloc2(str1, newpath, (pa + pw), (pa + pa + pw));
+			newpath = str_concat(str1, newpath);
+			free(str1);
+			free(str2);
 			return (newpath);
 		}
 	}
@@ -143,8 +142,12 @@ char **checkbin(char **b)
 	path = _getpath();
 	pwd = _getpwd();
 	newpath = _verifypath(path,pwd);
-	printf("this is the new path %s\n", newpath);
+	free(path);
+	free(pwd);
+	/*printf("this is the new path %s\n", newpath);*/
 	tokens = strtok(newpath, ":");
+	if (!tokens)
+		return (NULL);
 	while (tokens != NULL)
 	{
 		while (tokens[j] != '\0')
@@ -152,6 +155,7 @@ char **checkbin(char **b)
 		buf = _calloc((j + 2), sizeof(char));
 		if (buf == NULL)
 		{
+			free(newpath);
 			perror("No memory");
 			exit(EXIT_FAILURE);
 		}
@@ -162,10 +166,9 @@ char **checkbin(char **b)
 		if (stat(valor, &veri) == 0)
 		{
 			b[0] = _realloc2(buf, b[0], i, _strlen(valor));
-			free(path);
-			free(pwd);
 			free(buf);
 			free(valor);
+			free(newpath);
 			return (b);
 		}
 		tokens = strtok(NULL, ":");
@@ -173,7 +176,7 @@ char **checkbin(char **b)
 		free(buf);
 		free(valor);
 	}
-	free(path);
+	free(newpath);
 	if (stat(b[0], &veri) == 0)
 		return (b);
 	return (b);

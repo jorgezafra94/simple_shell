@@ -33,7 +33,7 @@ char **parsing(char *line)
 	int length = 0, j = 0, i = 0, buffsize = 0;
 
 	if (line == NULL)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	buffsize = Counter(line, " ");
 	p = _calloc((buffsize + 1), sizeof(char *));
 	if (!p)
@@ -42,7 +42,9 @@ char **parsing(char *line)
 		exit(EXIT_FAILURE);
 	}
 /*store the token partition inside **p */
-        token = strtok(line, " \n");
+        token = strtok(line, " \n\0");
+	if (!token)
+		return (NULL);
 	while (token)
 	{
 		while (token[length] != '\0')
@@ -60,7 +62,7 @@ char **parsing(char *line)
 		length = 0;
 		j++;
 /*get the next element*/
-		token = strtok(NULL, " \n");
+		token = strtok(NULL, " \n\0");
 	}
 	p[j] = NULL;
         return (p);

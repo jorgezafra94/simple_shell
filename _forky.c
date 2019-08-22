@@ -23,7 +23,7 @@ void _forky(char **p, char *line, int a, int loop)
 	}
 	if (child_pid == 0)
 	{
-		/*printf("Before execve\n");*/
+		printf("esto se ejecuta%s\n", p[0]);
 		if (execve(p[0], p, NULL) == -1)
 		{
 			/*_put_err(p, loop);*/

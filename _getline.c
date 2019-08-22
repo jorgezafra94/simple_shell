@@ -8,7 +8,6 @@ char  *_getline(void)
 	char *line = NULL;
 	size_t bufsize = 0;
 	int num = 0, pos = 0;
-	
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDIN_FILENO, "#cisfun$ ", 9);
 /*verify the Crtl+c Interrupt Signal*/
@@ -28,7 +27,7 @@ char  *_getline(void)
 				pos++;
 			}
 		}
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		write(STDIN_FILENO, "#cisfun$ ", 9);
 		signal(SIGINT, _signal);
 		num = getline(&line, &bufsize, stdin);
 	}

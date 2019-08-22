@@ -41,7 +41,7 @@ int _cd(char *a)
 	static char buf[2048];
 	static int w = 0;
 	char *aux2;
-	char aux[2048];
+	char aux[2048] = {0};
 
 	if (w == 0)
 	{

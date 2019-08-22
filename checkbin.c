@@ -142,8 +142,6 @@ char **checkbin(char **b)
 	path = _getpath();
 	pwd = _getpwd();
 	newpath = _verifypath(path,pwd);
-	free(path);
-	free(pwd);
 	/*printf("this is the new path %s\n", newpath);*/
 	tokens = strtok(newpath, ":");
 	if (!tokens)
@@ -155,7 +153,6 @@ char **checkbin(char **b)
 		buf = _calloc((j + 2), sizeof(char));
 		if (buf == NULL)
 		{
-			free(newpath);
 			perror("No memory");
 			exit(EXIT_FAILURE);
 		}
@@ -168,7 +165,6 @@ char **checkbin(char **b)
 			b[0] = _realloc2(buf, b[0], i, _strlen(valor));
 			free(buf);
 			free(valor);
-			free(newpath);
 			return (b);
 		}
 		tokens = strtok(NULL, ":");

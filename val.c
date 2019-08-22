@@ -17,7 +17,7 @@ int main(void)
 {
 	char *line = NULL;
 	char **args = NULL;
-        int value = 1, i = 0;
+	int value = 1, i = 0;
 
 	while (1)
 	{
@@ -32,7 +32,7 @@ int main(void)
 			{
 				args = checkbin(args);
 				if (args)
-					_forky(args, line,  i);
+				_forky(args, line,  i);
 			}
 			free_grid(args, i);
 			free(line);

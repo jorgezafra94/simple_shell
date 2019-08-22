@@ -1,17 +1,17 @@
 #include "shell.h"
 /**
  * _getline - function to read what the user writes
+ * @a: pointer to loop counter
  * Return: line in sucess otherwise NULL.
  */
-char  *_getline(void)
+char  *_getline(int *a)
 {
 	char *line = NULL;
 	size_t bufsize = 0;
 	int num = 0, pos = 0;
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDIN_FILENO, "#cisfun$ ", 9);
-	loopin++;
-	err = 0;
+	*a = *a + 1;
 /*verify the Crtl+c Interrupt Signal*/
 	signal(SIGINT, _signal);
 	num = getline(&line, &bufsize, stdin);
@@ -30,10 +30,9 @@ char  *_getline(void)
 			}
 		}
 		write(STDIN_FILENO, "#cisfun$ ", 9);
-		loopin++;
+		*a = *a + 1;
 		signal(SIGINT, _signal);
 		num = getline(&line, &bufsize, stdin);
-		err = 0;
 	}
 /* to get an end of line when the shell finish*/
 	if (num == -1)

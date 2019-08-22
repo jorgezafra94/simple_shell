@@ -8,10 +8,11 @@
  * Return: Nothing.
  */
 
-void _forky(char **p, char *line, int a)
+void _forky(char **p, char *line, int a, int loop)
 {
 	pid_t child_pid;
 	int status;
+	(void)loop;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -24,7 +25,7 @@ void _forky(char **p, char *line, int a)
 		/*printf("Before execve\n");*/
 		if (execve(p[0], p, NULL) == -1)
 		{
-			_put_err(p);
+			/*_put_err(p, loop);*/
 		}
 		free(line);
 		free_grid(p, a);

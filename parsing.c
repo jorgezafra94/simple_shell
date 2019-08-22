@@ -26,6 +26,7 @@ int Counter(char *L, char *lim)
 /**
  * parsing - create an array of pointers depending of the delimit characters
  * @line: input of the user
+ * @loop: counter of loops
  * Return: an array of pointers of n size
  */
 char **parsing(char *line)

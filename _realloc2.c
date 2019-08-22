@@ -3,16 +3,16 @@
  * _realloc2 - change the size and copy the content
  * @a: string to add
  * @p: malloc pointer to reallocate
- * @old_size: old number of bytes
+ * @old: old number of bytes
  * @new_size: new number of Bytes
  * Return: nothing
  */
-void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size)
+void *_realloc2(char *a, char *p, unsigned int old, unsigned int new_size)
 {
 	char *pa = NULL;
 	unsigned int i, j = 0;
 
-	if (new_size == old_size)
+	if (new_size == old)
 		return (p);
 	if (p == NULL || a == NULL)
 	{
@@ -28,7 +28,7 @@ void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size)
 		free(p);
 		return (NULL);
 	}
-	if (new_size > old_size)
+	if (new_size > old)
 	{
 		pa = _calloc(new_size + 1, sizeof(char));
 		if (!pa)

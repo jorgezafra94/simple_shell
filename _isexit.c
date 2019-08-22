@@ -3,13 +3,18 @@
 /**
  *type_exit - get the type of exit
  * @p: input user, array of pointers
+ * @loop: counter of loops
  */
-void type_exit(char **p)
+void type_exit(char **p, int loop, char *line, int i)
 {
-	unsigned int valor, cont = 0, flag = 0;
+	unsigned int valor = 0, cont = 0, flag = 0;
 
 	if (p[1] == NULL || (p[1][0] == '0' && p[1][1] == '\0'))
+	{
+		free(line);
+		free_grid(p, i);
 		exit(0);
+	}
 	else
 	{
 		while (p[1][cont] != '\0')
@@ -22,22 +27,29 @@ void type_exit(char **p)
 			cont++;
 		}
 		if (flag == 1)
-			_put_err(p);
+			_put_err(p, loop);
 		else
 		{
 			valor = _atoi(p[1]);
-			if (valor > INT_MAX)
-				_put_err(p);
-			valor = valor % 256;
-			exit(valor);
+
+			if (!(valor > INT_MAX))
+			{
+				valor = valor % 256;
+				free(line);
+				free_grid(p, i);
+				exit(valor);
+			}
+			else
+				_put_err(p, loop);
 		}
 	}
 }
 /**
  * _isexit - finds if line input is exit therefore process termination
  * @p: input of user
+ * @loop: loop counter
  */
-void _isexit(char **p)
+void _isexit(char **p, int loop, char *line, int x)
 {
 	char str[5] = "exit";
 	int i = 0, j = 0, cont = 0;
@@ -55,6 +67,6 @@ void _isexit(char **p)
 			i++;
 		}
 		if (cont == 4)
-			type_exit(p);
+			type_exit(p, loop, line, x);
 	}
 }

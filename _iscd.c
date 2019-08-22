@@ -2,9 +2,10 @@
 /**
  * _iscd - finds if line input is cd builtin
  * @p: input of user, array of pointers
+ * @loop: counter of loop
  * Return: -1 if not success 0 if exist cd in args[0]
  */
-int _iscd(char **p)
+int _iscd(char **p, int loop)
 {
 	char str[3] = "cd";
 	int i = 0, j = 0, cont = 0, valor = -1;
@@ -23,7 +24,7 @@ int _iscd(char **p)
 		}
 		if (cont == 2)
 		{
-			valor = _cd(p);
+			valor = _cd(p, loop);
 		}
 	}
 	return (valor);
@@ -31,9 +32,10 @@ int _iscd(char **p)
 /**
  * _cd - Changes the current directory of the process.
  * @a: input of user, array of pointers
+ * @loop: loops counter
  * Return:-1 if not find the directory or 0 if success
  */
-int _cd(char **a)
+int _cd(char **a, int loop)
 {
 	int valor = -1, i;
 	static char buf[2048];
@@ -51,7 +53,7 @@ int _cd(char **a)
 		getcwd(buf, 2048);
 		valor = chdir((const char *)_gethome());
 		if (valor == -1)
-			_put_err(a);
+			_put_err(a, loop);
 		return (valor);
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
@@ -61,7 +63,7 @@ int _cd(char **a)
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
 		if (valor == -1)
-			_put_err(a);
+			_put_err(a, loop);
 		for (i = 0; i < 2048; i++)
 			buf[i] = aux[i];
 		return (valor);
@@ -71,7 +73,7 @@ int _cd(char **a)
 		getcwd(buf, 2048);
 		valor = chdir((const char *)a[1]);
 		if (valor == -1)
-			_put_err(a);
+			_put_err(a, loop);
 		return (valor);
 	}
 }

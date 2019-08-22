@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * _put_err_char - writes the character c to stdout
  * @c: The character to print
@@ -29,21 +28,17 @@ void _put_err_str(char *str)
  * @p: input pointer
  * Return: Nothing.
  */
-void _put_err(char **p)
+void _put_err(char **p, int loop)
 {
 	char prompt[] = "./hsh";
 
-	if (err == 0)
-	{
-		_put_err_str(prompt);
-		_put_err_char(':');
-		_put_err_char(' ');
-		_put_err_char(loopin + '0');
-		_put_err_char(':');
-		_put_err_char(' ');
-		_builtinerr(p);
-		err = 1;
-	}
+	_put_err_str(prompt);
+	_put_err_char(':');
+	_put_err_char(' ');
+	_put_err_char(loop + '0');
+	_put_err_char(':');
+	_put_err_char(' ');
+	_builtinerr(p);
 }
 /**
  * _builtinerr - writes the error

@@ -112,7 +112,10 @@ char *_getpath(void)
 	}
 	k = cont;
 	while (environ[i][k] != '\0')
+	{
 		w++;
+		k++;
+	}
 	if (w == 0)
 		return (NULL);
 	path = _calloc(w + 1, sizeof(char));

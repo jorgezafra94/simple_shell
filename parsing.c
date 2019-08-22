@@ -44,7 +44,10 @@ char **parsing(char *line)
 /*store the token partition inside **p */
         token = strtok(line, " \t\n\0");
 	if (!token)
+	{
+		free(p);
 		return (NULL);
+	}
 	while (token)
 	{
 		while (token[length] != '\0')

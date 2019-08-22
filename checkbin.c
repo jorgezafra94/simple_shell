@@ -92,7 +92,7 @@ char *_verifypath(char *path, char *pwd)
  */
 char *_getpath(void)
 {
-	int i, j, k = 0, cont = 0;
+	int i, j, k = 0, w = 0, cont = 0;
 	char str[] = "PATH=";
 	char *path;
 
@@ -110,9 +110,12 @@ char *_getpath(void)
 		if (cont == 5)
 			break;
 	}
+	k = cont;
 	while (environ[i][k] != '\0')
-		k++;
-	path = _calloc(k + 1, sizeof(char));
+		w++;
+	if (w == 0)
+		return (NULL);
+	path = _calloc(w + 1, sizeof(char));
 	if (path == NULL)
 		return (NULL);
 	k = 5;
@@ -140,7 +143,7 @@ char **checkbin(char **b)
 	if (b == NULL || i == 0)
 		return (NULL);
 	path = _getpath();
-	if (!path)
+	if (path == NULL)
 		return (b);
 	pwd = _getpwd();
 	newpath = _verifypath(path, pwd);

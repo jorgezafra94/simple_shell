@@ -42,7 +42,7 @@ char **parsing(char *line)
 		exit(EXIT_FAILURE);
 	}
 /*store the token partition inside **p */
-        token = strtok(line, " \n\0");
+        token = strtok(line, " \t\n\0");
 	if (!token)
 		return (NULL);
 	while (token)
@@ -62,7 +62,7 @@ char **parsing(char *line)
 		length = 0;
 		j++;
 /*get the next element*/
-		token = strtok(NULL, " \n\0");
+		token = strtok(NULL, " \t\n\0");
 	}
 	p[j] = NULL;
         return (p);

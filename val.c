@@ -32,13 +32,14 @@ int main(void)
 			{
 				args = checkbin(args);
 				if (args)
-				_forky(args, line,  i);
+				_forky(args, line, i);
 			}
 			free_grid(args, i);
 			free(line);
 		}
 		else
 		{
+			free(line);
 			fflush(STDIN_FILENO);
 		}
 	}

@@ -4,7 +4,8 @@
  *@p: input user, array of pointers
  *@loop: counter of loops
  *@line: input user
- * Return:-1 if the input is different to env or cd
+ *@i:number of pointers inside array of pointers
+ * Return: -1 if the input is different to env or cd
  *or 0 if the input is cd or env
  */
 int revision(char **p, int loop, char *line, int i)

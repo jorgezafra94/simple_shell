@@ -5,6 +5,7 @@
  * @p: array of pointer (args)
  * @line: input typed by the user
  * @a: count of pointers
+ * @loop: count of loops
  * Return: Nothing.
  */
 

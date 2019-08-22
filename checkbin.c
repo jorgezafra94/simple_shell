@@ -140,6 +140,8 @@ char **checkbin(char **b)
 	if (b == NULL || i == 0)
 		return (NULL);
 	path = _getpath();
+	if (!path)
+		return (b);
 	pwd = _getpwd();
 	newpath = _verifypath(path, pwd);
 	tokens = strtok(newpath, ":");
@@ -168,7 +170,5 @@ char **checkbin(char **b)
 		free(buf), free(valor);
 	}
 	free(newpath);
-	if (stat(b[0], &veri) == 0)
-		return (b);
 	return (b);
 }

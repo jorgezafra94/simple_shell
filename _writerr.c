@@ -26,6 +26,7 @@ void _put_err_str(char *str)
 /**
  * _put_err - writes the error
  * @p: input pointer
+ * @loop: counter of loops
  * Return: Nothing.
  */
 void _put_err(char **p, int loop)

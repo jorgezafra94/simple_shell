@@ -4,6 +4,8 @@
  *type_exit - get the type of exit
  * @p: input user, array of pointers
  * @loop: counter of loops
+ * @line: input user
+ * @i: number of pointers inside the array of pointers
  */
 void type_exit(char **p, int loop, char *line, int i)
 {
@@ -48,6 +50,8 @@ void type_exit(char **p, int loop, char *line, int i)
  * _isexit - finds if line input is exit therefore process termination
  * @p: input of user
  * @loop: loop counter
+ * @line: input user
+ * @x: number of pointers inside array of pointers
  */
 void _isexit(char **p, int loop, char *line, int x)
 {

@@ -1,14 +1,13 @@
 #include "shell.h"
-
 /**
  * _iscd - finds if line input is cd builtin
- * @p: input of user
+ * @p: input of user, array of pointers
  * Return: -1 if not success 0 if exist cd in args[0]
  */
 int _iscd(char **p)
 {
-        char str[3] = "cd";
-        int i = 0, j = 0, cont = 0, valor = -1;
+	char str[3] = "cd";
+	int i = 0, j = 0, cont = 0, valor = -1;
 
 	while (p[0][j] != '\0')
 	{
@@ -18,7 +17,7 @@ int _iscd(char **p)
 	{
 		while (i < 2)
 		{
-			if(p[0][i] == str[i])
+			if (p[0][i] == str[i])
 				cont++;
 			i++;
 		}
@@ -31,26 +30,21 @@ int _iscd(char **p)
 }
 /**
  * _cd - Changes the current directory of the process.
- * @a: pointer to check
+ * @a: input of user, array of pointers
  * Return:-1 if not find the directory or 0 if success
  */
-
 int _cd(char **a)
 {
 	int valor = -1, i;
 	static char buf[2048];
-	static int w = 0;
-	char *aux2;
-	char aux[2048] = {0};
+	static int w = 1;
+	char *aux2, aux[2048] = {0};
 
-	if (w == 0)
+	if (w == 1)
 	{
 		aux2 = _gethome();
-		while (aux2[w] != '\0')
-		{
+		for (w = 0; aux2[w] != '\0'; w++)
 			buf[w] = aux2[w];
-			w++;
-		}
 	}
 	if (a[1] == NULL)
 	{
@@ -67,7 +61,7 @@ int _cd(char **a)
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
 		if (valor == -1)
-                        _put_err(a);
+			_put_err(a);
 		for (i = 0; i < 2048; i++)
 			buf[i] = aux[i];
 		return (valor);
@@ -77,7 +71,7 @@ int _cd(char **a)
 		getcwd(buf, 2048);
 		valor = chdir((const char *)a[1]);
 		if (valor == -1)
-                        _put_err(a);
+			_put_err(a);
 		return (valor);
 	}
 }

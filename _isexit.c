@@ -1,10 +1,14 @@
 #include "shell.h"
-
+#include <limits.h>
+/**
+ *type_exit - get the type of exit
+ * @p: input user, array of pointers
+ */
 void type_exit(char **p)
 {
 	unsigned int valor, cont = 0, flag = 0;
 
-	if (p[1] == NULL ||(p[1][0] == '0' && p[1][1] == '\0'))
+	if (p[1] == NULL || (p[1][0] == '0' && p[1][1] == '\0'))
 		exit(0);
 	else
 	{
@@ -22,6 +26,8 @@ void type_exit(char **p)
 		else
 		{
 			valor = _atoi(p[1]);
+			if (valor > INT_MAX)
+				_put_err(p);
 			valor = valor % 256;
 			exit(valor);
 		}
@@ -44,7 +50,7 @@ void _isexit(char **p)
 	{
 		while (i < 4)
 		{
-			if(p[0][i] == str[i])
+			if (p[0][i] == str[i])
 				cont++;
 			i++;
 		}

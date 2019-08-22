@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
- * _realloc - change the size and copy the content
+ * _realloc2 - change the size and copy the content
+ * @a: string to add
  * @p: malloc pointer to reallocate
  * @old_size: old number of bytes
  * @new_size: new number of Bytes
@@ -13,7 +14,6 @@ void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size)
 
 	if (new_size == old_size)
 		return (p);
-
 	if (p == NULL || a == NULL)
 	{
 		pa = _calloc(new_size + 1, sizeof(char));
@@ -21,10 +21,8 @@ void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size)
 			return (NULL);
 		return (pa);
 	}
-
 	while (a[j] != '\0')
 		j++;
-
 	if (new_size == 0 && p != NULL)
 	{
 		free(p);
@@ -36,9 +34,7 @@ void *_realloc2(char *a, char *p, unsigned int old_size, unsigned int new_size)
 		if (!pa)
 			return (NULL);
 		for (i = 0; i < j; i++)
-		{
 			pa[i] = a[i];
-		}
 		for (; i <= new_size; i++)
 			pa[i] = *((char *)p + (i - j));
 		free(p);

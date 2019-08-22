@@ -2,7 +2,7 @@
 
 /**
  * _gethome - funtion to get env HOME
- * @environ: points to an array of pointers to strings called the "environment"
+ *Return: string inside the HOME env variable
  */
 char *_gethome(void)
 {

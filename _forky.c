@@ -17,7 +17,7 @@ void _forky(char **p, char *line, int a)
 	if (child_pid == -1)
 	{
 		perror("Error");
-		exit (127);
+		exit(127);
 	}
 	if (child_pid == 0)
 	{

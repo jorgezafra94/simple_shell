@@ -1,18 +1,27 @@
 #include "shell.h"
-
+/**
+ *revision - gets if the input of user is env, cd
+ *@p: input user, array of pointers
+ * Return:-1 if the input is different to env or cd
+ *or 0 if the input is cd or env
+ */
 int revision(char **p)
 {
 	int valenv = 0, valcd = 0, other = -1;
 
 	_isexit(p);
-
-	if ((valenv = _isenv(p)) == 0)
+	valenv = _isenv(p);
+	valcd = _iscd(p);
+	if (valenv == 0)
 		return (valenv);
-	if ((valcd = _iscd(p)) == 0)
-	  return (valcd);
+	if (valcd == 0)
+		return (valcd);
 	return (other);
 }
-
+/**
+ *main - shell skeleton
+ * Return: 0 on Success
+ */
 int main(void)
 {
 	char *line = NULL;

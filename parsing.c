@@ -8,6 +8,7 @@
 int Counter(char *L, char *lim)
 {
 	int ct = 0, num = 0;
+
 	if (lim != NULL)
 	{
 		while (L && L[ct] != '\0')
@@ -42,7 +43,7 @@ char **parsing(char *line)
 		exit(EXIT_FAILURE);
 	}
 /*store the token partition inside **p */
-        token = strtok(line, " \t\n\0");
+	token = strtok(line, " \t\n\0");
 	if (!token)
 	{
 		free(p);
@@ -68,5 +69,5 @@ char **parsing(char *line)
 		token = strtok(NULL, " \t\n\0");
 	}
 	p[j] = NULL;
-        return (p);
+	return (p);
 }

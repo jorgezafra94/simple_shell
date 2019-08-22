@@ -18,7 +18,7 @@ void type_exit(char **p)
 			cont++;
 		}
 		if (flag == 1)
-			perror("Error: no value admitted");
+			_put_err(p);
 		else
 		{
 			valor = _atoi(p[1]);

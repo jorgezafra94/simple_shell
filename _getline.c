@@ -10,6 +10,8 @@ char  *_getline(void)
 	int num = 0, pos = 0;
 /* this step is for not get an uninitialized variable in valgrind*/
 	write(STDIN_FILENO, "#cisfun$ ", 9);
+	loopin++;
+	err = 0;
 /*verify the Crtl+c Interrupt Signal*/
 	signal(SIGINT, _signal);
 	num = getline(&line, &bufsize, stdin);
@@ -28,8 +30,10 @@ char  *_getline(void)
 			}
 		}
 		write(STDIN_FILENO, "#cisfun$ ", 9);
+		loopin++;
 		signal(SIGINT, _signal);
 		num = getline(&line, &bufsize, stdin);
+		err = 0;
 	}
 /* to get an end of line when the shell finish*/
 	if (num == -1)

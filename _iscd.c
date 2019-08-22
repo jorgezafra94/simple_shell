@@ -24,7 +24,7 @@ int _iscd(char **p)
 		}
 		if (cont == 2)
 		{
-			valor = _cd(p[1]);
+			valor = _cd(p);
 		}
 	}
 	return (valor);
@@ -35,7 +35,7 @@ int _iscd(char **p)
  * Return:-1 if not find the directory or 0 if success
  */
 
-int _cd(char *a)
+int _cd(char **a)
 {
 	int valor = -1, i;
 	static char buf[2048];
@@ -52,18 +52,22 @@ int _cd(char *a)
 			w++;
 		}
 	}
-	if (a == NULL)
+	if (a[1] == NULL)
 	{
 		getcwd(buf, 2048);
 		valor = chdir((const char *)_gethome());
+		if (valor == -1)
+			_put_err(a);
 		return (valor);
 	}
-	else if (a[0] == '-' && a[1] == '\0')
+	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
 		getcwd(aux, 2048);
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
+		if (valor == -1)
+                        _put_err(a);
 		for (i = 0; i < 2048; i++)
 			buf[i] = aux[i];
 		return (valor);
@@ -71,7 +75,9 @@ int _cd(char *a)
 	else
 	{
 		getcwd(buf, 2048);
-		valor = chdir((const char *)a);
+		valor = chdir((const char *)a[1]);
+		if (valor == -1)
+                        _put_err(a);
 		return (valor);
 	}
 }

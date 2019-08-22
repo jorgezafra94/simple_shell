@@ -11,8 +11,12 @@
 #include <string.h>
 #include <signal.h>
 
+/*global variables*/
+int loopin;
+int err;
 extern char **environ;
 
+/* shell functions*/
 char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
@@ -28,9 +32,13 @@ void _isexit(char **p);
 void _signal(int s);
 int _isenv(char **p);
 void _env(char *p);
-int _cd(char *a);
+int _cd(char **a);
 int _iscd(char **p);
 char *_gethome(void);
 char *_getpwd(void);
 int _atoi(char *s);
+
+/* errors */
+void _put_err(char **p);
+void _builtinerr(char **p);
 #endif

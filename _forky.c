@@ -16,7 +16,7 @@ void _forky(char **p, char *line, int a)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		perror("Error:");
+		perror("Error");
 		exit (127);
 	}
 	if (child_pid == 0)
@@ -24,7 +24,7 @@ void _forky(char **p, char *line, int a)
 		/*printf("Before execve\n");*/
 		if (execve(p[0], p, NULL) == -1)
 		{
-			perror("Error:");
+			_put_err(p);
 		}
 		free(line);
 		free_grid(p, a);

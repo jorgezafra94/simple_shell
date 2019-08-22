@@ -61,6 +61,8 @@ char *_verifypath(char *path, char *pwd)
 		if (path[0] == dosp)
 		{
 			newpath = str_concat(pwd, path);
+			free(pwd);
+			free(path);
 			return (newpath);
 		}
 		else if(path[cont] == dosp && path[cont + 1] == dosp)
@@ -79,9 +81,12 @@ char *_verifypath(char *path, char *pwd)
 			newpath = str_concat(str1, newpath);
 			free(str1);
 			free(str2);
+			free(pwd);
+			free(path);
 			return (newpath);
 		}
 	}
+	free(pwd);
 	return (path);
 }
 /**
@@ -165,6 +170,7 @@ char **checkbin(char **b)
 			b[0] = _realloc2(buf, b[0], i, _strlen(valor));
 			free(buf);
 			free(valor);
+			free(newpath);
 			return (b);
 		}
 		tokens = strtok(NULL, ":");

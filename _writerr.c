@@ -36,6 +36,8 @@ void _put_err(char **p, int loop, int sig)
 
 	if (sig == 0)
 		pr = 0;
+	if (sig == 3)
+		pr = 3;
 	pr++;
 	if (pr == 2)
 	{

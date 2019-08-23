@@ -42,7 +42,7 @@ char *_strtoky(char *s, char *d);
 /* help files*/
 void _ishelp(char **p, int loop);
 void _help_builtin(char **p, int loop);
-void _help(char **p);
+void _help(char **p, int loop);
 ssize_t read_help(void);
 ssize_t read_cdhelp(void);
 ssize_t read_exithelp(void);

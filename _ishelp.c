@@ -22,8 +22,7 @@ void _ishelp(char **p, int loop)
 		}
 		if (cont == 4)
 		{
-			_help_builtin(p, loop);
-			_help(p);
+			_help(p, loop);
 		}
 	}
 }
@@ -75,10 +74,14 @@ void _help_builtin(char **p, int loop)
 * @p: input pointer
 * Return: nothing.
 */
-void _help(char **p)
+void _help(char **p, int loop)
 {
 	if (p[0] != NULL && p[1] == NULL)
 	{
 		read_help();
+	}
+	else
+	{
+		_help_builtin(p, loop);
 	}
 }

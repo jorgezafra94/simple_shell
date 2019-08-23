@@ -24,7 +24,7 @@ void _forky(char **p, char *line, int a, int loop)
 	{
 		if (execve(p[0], p, NULL) == -1)
 		{
-			_put_err(p, loop, 1);
+			_put_err(p, loop, 3);
 			write(STDIN_FILENO, "\n", 1);
 		}
 		free(line);

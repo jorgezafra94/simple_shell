@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * _ishelp - if args[0] is help builtin
  * @p: input pointer
@@ -41,8 +40,7 @@ void _help_builtin(char **p, int loop)
 	while (p[k] != NULL)
 	{
 		j = 0;
-		cont = 0;
-		cont2 = 0;
+		cont = 0, cont2 = 0;
 		while (p[k][j] != '\0')
 			j++;
 		if (j == 2)
@@ -62,18 +60,17 @@ void _help_builtin(char **p, int loop)
 					cont++;
 			if (cont == 4)
 				read_exithelp();
-			else
-				_put_err(p, loop, 1);
 			for (i = 0 ; i < 4; i++)
 				if (p[k][i] == str3[i])
 					cont2++;
 			if (cont2 == 4)
 				read_helphelp();
-			else
+			else if (cont != 4 && cont2 != 4)
 				_put_err(p, loop, 1);
 		}
 		else
-			_put_err(p, loop, 1), k++;
+			_put_err(p, loop, 1);
+		k++;
 	}
 }
 /**

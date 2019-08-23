@@ -40,8 +40,8 @@ char *_strtoky(char *s, char *d);
 #define SIZE 1024
 
 /* help files*/
-void _ishelp(char **p);
-void _builtinhelp(char **p);
+void _ishelp(char **p, int loop);
+void _builtinhelp(char **p, int loop);
 ssize_t read_cdhelp(void);
 ssize_t read_exithelp(void);
 ssize_t read_helphelp(void);
@@ -49,4 +49,8 @@ ssize_t read_helphelp(void);
 /* errors */
 void _put_err(char **p, int loop);
 void _builtinerr(char **p);
+void _errorcd(char **p);
+void _errorexit(char **p);
+void _errorhelp(char **p);
+
 #endif

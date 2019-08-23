@@ -13,7 +13,7 @@ int revision(char **p, int loop, char *line, int i)
 	int valenv = 0, valcd = 0, other = -1;
 
 	_isexit(p, loop, line, i);
-	_ishelp(p);
+	_ishelp(p, loop);
 	valenv = _isenv(p);
 	valcd = _iscd(p, loop);
 	if (valenv == 0)

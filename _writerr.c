@@ -29,17 +29,24 @@ void _put_err_str(char *str)
  * @loop: counter of loops
  * Return: Nothing.
  */
-void _put_err(char **p, int loop)
+void _put_err(char **p, int loop, int sig)
 {
 	char prompt[] = "./hsh";
+	static int pr = 1;
 
-	_put_err_str(prompt);
-	_put_err_char(':');
-	_put_err_char(' ');
-	_put_err_char(loop + '0');
-	_put_err_char(':');
-	_put_err_char(' ');
-	_builtinerr(p);
+	if (sig == 0)
+		pr = 0;
+	pr++;
+	if (pr == 2)
+	{
+		_put_err_str(prompt);
+		_put_err_char(':');
+		_put_err_char(' ');
+		_put_err_char(loop + '0');
+		_put_err_char(':');
+		_put_err_char(' ');
+		_builtinerr(p);
+	}
 }
 /**
  * _builtinerr - writes the error

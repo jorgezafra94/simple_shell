@@ -58,6 +58,7 @@ int main(void)
 			free(line);
 			fflush(STDIN_FILENO);
 		}
+		_put_err(args, loop, 0);
 	}
 		return (0);
 }

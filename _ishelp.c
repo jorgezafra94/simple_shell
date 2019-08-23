@@ -66,7 +66,7 @@ void _help_builtin(char **p, int loop)
 				read_helphelp();
 		}
 		else
-			_put_err(p, loop);
+			_put_err(p, loop, 1);
 		k++;
 	}
 }
@@ -76,7 +76,7 @@ void _help_builtin(char **p, int loop)
 * Return: nothing.
 */
 void _help(char **p)
-{	
+{
 	if (p[0] != NULL && p[1] == NULL)
 	{
 		read_help();

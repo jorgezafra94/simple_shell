@@ -53,7 +53,7 @@ int _cd(char **a, int loop)
 		getcwd(buf, 2048);
 		valor = chdir((const char *)_gethome());
 		if (valor == -1)
-			_put_err(a, loop);
+			_put_err(a, loop, 1);
 		return (valor);
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
@@ -63,7 +63,7 @@ int _cd(char **a, int loop)
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
 		if (valor == -1)
-			_put_err(a, loop);
+			_put_err(a, loop, 1);
 		for (i = 0; i < 2048; i++)
 			buf[i] = aux[i];
 		return (valor);
@@ -73,7 +73,7 @@ int _cd(char **a, int loop)
 		getcwd(buf, 2048);
 		valor = chdir((const char *)a[1]);
 		if (valor == -1)
-			_put_err(a, loop);
+			_put_err(a, loop, 1);
 		return (valor);
 	}
 }

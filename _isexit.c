@@ -29,7 +29,7 @@ void type_exit(char **p, int loop, char *line, int i)
 			cont++;
 		}
 		if (flag == 1)
-			_put_err(p, loop);
+			_put_err(p, loop, 1);
 		else
 		{
 			valor = _atoi(p[1]);
@@ -42,7 +42,7 @@ void type_exit(char **p, int loop, char *line, int i)
 				exit(valor);
 			}
 			else
-				_put_err(p, loop);
+				_put_err(p, loop, 1);
 		}
 	}
 }

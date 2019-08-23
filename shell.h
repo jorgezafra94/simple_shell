@@ -49,7 +49,7 @@ ssize_t read_exithelp(void);
 ssize_t read_helphelp(void);
 
 /* errors */
-void _put_err(char **p, int loop);
+void _put_err(char **p, int loop, int sig);
 void _builtinerr(char **p);
 void _errorcd(char **p);
 void _errorexit(char **p);

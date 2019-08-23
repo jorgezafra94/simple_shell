@@ -35,6 +35,7 @@ int _iscd(char **p, int loop);
 char *_gethome(void);
 char *_getpwd(void);
 int _atoi(char *s);
+char *_strtoky(char *s, char *d);
 
 #define SIZE 1024
 

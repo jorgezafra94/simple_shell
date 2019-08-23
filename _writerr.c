@@ -8,6 +8,7 @@
 void print_number(int n)
 {
 	unsigned int j, cont = 1;
+	char a;
 	unsigned int var1, num, var2, var3 = 1;
 
 	var2 = n;
@@ -23,7 +24,8 @@ void print_number(int n)
 		var1 = var2 / var3;
 		var2 = var2 % var3;
 		var3 = var3 / 10;
-		_putchar ('0' + var1);
+		a = '0' + var1;
+		write(STDERR_FILENO, &a, 1);
 	}
 }
 

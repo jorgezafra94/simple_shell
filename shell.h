@@ -20,7 +20,7 @@ int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 char *_getline(int *a);
 char **parsing(char *line);
-char *_getline_av(void);
+/*char _getline_av(char *buffer);*/
 void free_grid(char **grid, int height);
 void _forky(char **p, char *line, int a, int loop);
 void *_calloc(unsigned int nmemb, unsigned int size);
@@ -35,6 +35,15 @@ int _iscd(char **p, int loop);
 char *_gethome(void);
 char *_getpwd(void);
 int _atoi(char *s);
+
+#define SIZE 1024
+
+/* help files*/
+void _ishelp(char **p);
+void _builtinhelp(char **p);
+ssize_t read_cdhelp(void);
+ssize_t read_exithelp(void);
+ssize_t read_helphelp(void);
 
 /* errors */
 void _put_err(char **p, int loop);

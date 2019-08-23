@@ -5,7 +5,7 @@
  * @p: input pointer
  * Return: Nothing.
  */
-void _ishelp(char **p)
+void _ishelp(char **p, int loop)
 {
 	char str[] = "help";
 	int i = 0, j = 0, cont = 0;
@@ -21,7 +21,7 @@ void _ishelp(char **p)
 			i++;
 		}
 		if (cont == 4)
-			_builtinhelp(p);
+			_builtinhelp(p, loop);
 	}
 }
 /**
@@ -29,35 +29,41 @@ void _ishelp(char **p)
  * @p: input pointer
  * Return: nothing.
  */
-void _builtinhelp(char **p)
+void _builtinhelp(char **p, int loop)
 {
 	char str1[3] = "cd", str2[5] = "exit", str3[5] = "help";
-	int i = 0, j = 0, cont = 0;
+	int i = 0, j = 0, cont = 0, cont2 = 0, k = 1;
 
-	while (p[1][j] != '\0')
-		j++;
-	if (j == 2)
+	while (p[k] != NULL)
 	{
-		for (; i < 2; i++)
-			if (p[1][i] == str1[i])
-				cont++;
-		if (cont == 2)
-			read_cdhelp();
-	}
-	if (j == 4)
-	{
-		for (i = 0 ; i < 4; i++)
-			if (p[1][i] == str2[i])
-				cont++;
-		if (cont == 4)
-			read_exithelp();
-	}
-	if (j == 4)
-        {
-                for (i = 0; i < 4; i++)
-			if (p[1][i] == str3[i])
-				cont++;
-		if (cont == 4)
-			read_helphelp();
+		j = 0;
+		cont = 0;
+		cont2 = 0;
+		while (p[k][j] != '\0')
+			j++;
+		if (j == 2)
+		{
+			for (i = 0; i < 2; i++)
+				if (p[k][i] == str1[i])
+					cont++;
+			if (cont == 2)
+				read_cdhelp();
+		}
+		else if (j == 4)
+		{
+			for (i = 0 ; i < 4; i++)
+				if (p[k][i] == str2[i])
+					cont++;
+			if (cont == 4)
+				read_exithelp();
+			for (i = 0 ; i < 4; i++)
+				if (p[k][i] == str3[i])
+					cont2++;
+			if (cont2 == 4)
+				read_helphelp();
+		}
+		else
+			_put_err(p, loop);
+		k++;
 	}
 }

@@ -21,15 +21,18 @@ void _ishelp(char **p, int loop)
 			i++;
 		}
 		if (cont == 4)
-			_builtinhelp(p, loop);
+		{
+			_help_builtin(p, loop);
+			_help(p);
+		}
 	}
 }
 /**
- * _builtinhelp - writes the error
+ * _help_builtin - help of builtin
  * @p: input pointer
  * Return: nothing.
  */
-void _builtinhelp(char **p, int loop)
+void _help_builtin(char **p, int loop)
 {
 	char str1[3] = "cd", str2[5] = "exit", str3[5] = "help";
 	int i = 0, j = 0, cont = 0, cont2 = 0, k = 1;
@@ -65,5 +68,17 @@ void _builtinhelp(char **p, int loop)
 		else
 			_put_err(p, loop);
 		k++;
+	}
+}
+/**
+* _help- writes the error
+* @p: input pointer
+* Return: nothing.
+*/
+void _help(char **p)
+{	
+	if (p[0] != NULL && p[1] == NULL)
+	{
+		read_help();
 	}
 }

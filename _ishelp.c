@@ -50,6 +50,8 @@ void _help_builtin(char **p, int loop)
 					cont++;
 			if (cont == 2)
 				read_cdhelp();
+			else
+                                _put_err(p, loop, 1);
 		}
 		else if (j == 4)
 		{
@@ -58,11 +60,15 @@ void _help_builtin(char **p, int loop)
 					cont++;
 			if (cont == 4)
 				read_exithelp();
+			else
+				_put_err(p, loop, 1);
 			for (i = 0 ; i < 4; i++)
 				if (p[k][i] == str3[i])
 					cont2++;
 			if (cont2 == 4)
 				read_helphelp();
+			else
+				_put_err(p, loop, 1);
 		}
 		else
 			_put_err(p, loop, 1);

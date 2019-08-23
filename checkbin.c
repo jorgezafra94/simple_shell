@@ -150,7 +150,7 @@ char **checkbin(char **b)
 		return (b);
 	pwd = _getpwd();
 	newpath = _verifypath(path, pwd);
-	tokens = strtok(newpath, ":");
+	tokens = _strtoky(newpath, ":");
 	if (!tokens)
 		return (NULL);
 	while (tokens != NULL)
@@ -171,7 +171,7 @@ char **checkbin(char **b)
 			free(newpath);
 			return (b);
 		}
-		tokens = strtok(NULL, ":");
+		tokens = _strtoky(NULL, ":");
 		j = 0;
 		free(buf), free(valor);
 	}

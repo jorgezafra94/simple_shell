@@ -30,16 +30,18 @@ int _sch(char *s, char c)
  */
 char *_strtoky(char *s, char *d)
 {
-	static char *ultimo;
+	static char *ultimo = NULL;
 	int i = 0, j = 0;
 
 	if (!s)
 		s = ultimo;
 	while (s[i] != '\0')
 	{
-		if (_sch(d, s[i]) == 0 && _sch(d, s[i + 1]) == 0)
+		if (_sch(d, s[i]) == 0 && s[i+1] == '\0')
 			i++;
-		if (_sch(d, s[i]) == 0 && _sch(d, s[i + 1]) == 1)
+		else if (_sch(d, s[i]) == 0 && _sch(d, s[i + 1]) == 0)
+				i++;
+		else if (_sch(d, s[i]) == 0 && _sch(d, s[i + 1]) == 1)
 		{
 			ultimo = s + i + 1;
 			*ultimo = '\0';
@@ -47,7 +49,7 @@ char *_strtoky(char *s, char *d)
 			s = s + j;
 			return(s);
 		}
-		if (_sch(d, s[i]) == 1)
+		else if (_sch(d, s[i]) == 1)
 		{
 			j++;
 			i++;

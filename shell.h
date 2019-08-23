@@ -54,6 +54,6 @@ void _builtinerr(char **p);
 void _errorcd(char **p);
 void _errorexit(char **p);
 void _errorhelp(char **p);
-
+void _errorgarbage(char **p);
 
 #endif

@@ -27,6 +27,7 @@ void _put_err_str(char *str)
  * _put_err - writes the error
  * @p: input pointer
  * @loop: counter of loops
+ * @sig: signal
  * Return: Nothing.
  */
 void _put_err(char **p, int loop, int sig)
@@ -50,6 +51,7 @@ void _put_err(char **p, int loop, int sig)
 		_builtinerr(p);
 	}
 }
+
 /**
  * _builtinerr - writes the error
  * @p: input pointer
@@ -70,21 +72,18 @@ void _builtinerr(char **p)
 		if (cont == 2)
 			_errorcd(p);
 	}
-	if (j == 4)
+	else if (j == 4)
 	{
 		for (i = 0 ; i < 4; i++)
 			if (p[0][i] == str2[i])
 				cont++;
 		if (cont == 4)
 			_errorexit(p);
-	}
-	if (j == 4)
-        {
-                for (i = 0; i < 4; i++)
+		for (i = 0; i < 4; i++)
 			if (p[0][i] == str3[i])
 				cont2++;
 		if (cont2 == 4)
 			_errorhelp(p);
 	}
 }
-	
+

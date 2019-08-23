@@ -3,6 +3,7 @@
 /**
  * _ishelp - if args[0] is help builtin
  * @p: input pointer
+ * @loop: counter of loops
  * Return: Nothing.
  */
 void _ishelp(char **p, int loop)
@@ -12,8 +13,8 @@ void _ishelp(char **p, int loop)
 
 	while (p[0][j] != '\0')
 		j++;
-        if (j == 4)
-        {
+	if (j == 4)
+	{
 		while (i < 4)
 		{
 			if (p[0][i] == str[i])
@@ -29,6 +30,7 @@ void _ishelp(char **p, int loop)
 /**
  * _help_builtin - help of builtin
  * @p: input pointer
+ * @loop: counter of loops
  * Return: nothing.
  */
 void _help_builtin(char **p, int loop)
@@ -51,7 +53,7 @@ void _help_builtin(char **p, int loop)
 			if (cont == 2)
 				read_cdhelp();
 			else
-                                _put_err(p, loop, 1);
+				_put_err(p, loop, 1);
 		}
 		else if (j == 4)
 		{
@@ -71,13 +73,13 @@ void _help_builtin(char **p, int loop)
 				_put_err(p, loop, 1);
 		}
 		else
-			_put_err(p, loop, 1);
-		k++;
+			_put_err(p, loop, 1), k++;
 	}
 }
 /**
 * _help- writes the error
 * @p: input pointer
+* @loop: counter of loops
 * Return: nothing.
 */
 void _help(char **p, int loop)

@@ -10,10 +10,14 @@
  */
 int revision(char **p, int loop, char *line, int i)
 {
-	int valenv = 0, valcd = 0, other = -1;
+	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
 
-	_isexit(p, loop, line, i);
-	_ishelp(p, loop);
+	valex = _isexit(p, loop, line, i);
+	if (valex == 0)
+		return (valex);
+	valhel = _ishelp(p, loop);
+	if (valhel == 0)
+		return (valhel);
 	valenv = _isenv(p);
 	valcd = _iscd(p, loop);
 	if (valenv == 0)

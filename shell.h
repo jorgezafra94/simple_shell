@@ -27,11 +27,11 @@ void _forky(char **p, char *line, int a, int loop);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **checkbin(char **b);
 void *_realloc2(char *a, char *p, unsigned int old, unsigned int new_size);
-void _isexit(char **p, int loop, char *line, int i);
+int  _isexit(char **p, int loop, char *line, int x);
 void _signal(int s);
 int _isenv(char **p);
 void _env(char *p);
-int _cd(char **a, int loop);
+void _cd(char **a, int loop);
 int _iscd(char **p, int loop);
 char *_gethome(void);
 char *_getpwd(void);
@@ -41,7 +41,7 @@ char *_strtoky(char *s, char *d);
 #define SIZE 1024
 
 /* help files*/
-void _ishelp(char **p, int loop);
+int _ishelp(char **p, int loop);
 void _help_builtin(char **p, int loop);
 void _help(char **p, int loop);
 ssize_t read_help(void);

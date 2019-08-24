@@ -53,24 +53,34 @@ void type_exit(char **p, int loop, char *line, int i)
  * @line: input user
  * @x: number of pointers inside array of pointers
  */
-void _isexit(char **p, int loop, char *line, int x)
+int _isexit(char **p, int loop, char *line, int x)
 {
 	char str[5] = "exit";
-	int i = 0, j = 0, cont = 0;
+	int i = 0, cont = 0, salida = -1;
 
-	while (p[0][j] != '\0')
+	while (i < 5)
 	{
-		j++;
-	}
-	if (j == 4)
-	{
-		while (i < 4)
+		if (i < 4)
 		{
 			if (p[0][i] == str[i])
 				cont++;
-			i++;
 		}
-		if (cont == 4)
-			type_exit(p, loop, line, x);
+		else
+		{
+			if (p[0][i] == '\0')
+				cont++;
+		}
+		i++;
 	}
+	if (cont == 5)
+	{
+		type_exit(p, loop, line, x);
+		salida = 0;
+	}
+	if (cont == 4)
+	{
+		salida = 0;
+		_put_err(p, loop, 3);
+	}
+	return (salida);
 }

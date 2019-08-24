@@ -41,13 +41,12 @@ void _put_err(char **p, int loop, int sig)
 	char prompt[] = "./hsh";
 	static int pr = 1;
 
-	(void)loop;
 	if (sig == 0)
 		pr = 0;
+	pr++;
 	if (sig == 3)
 		pr = 3;
-	pr++;
-	if (pr == 2)
+	if (pr == 2 || (pr == 3 && sig ==3))
 	{
 		write(STDERR_FILENO, prompt, 5);
 		write(STDERR_FILENO, ":", 1);
@@ -55,7 +54,13 @@ void _put_err(char **p, int loop, int sig)
 		print_number(loop);
 		write(STDERR_FILENO, ":", 1);
 		write(STDERR_FILENO, " ", 1);
+	}
+	if (pr == 2)
 		_builtinerr(p);
+        else if (pr == 3 && sig == 3)
+	{
+		_errorgarbage(p);
+		pr = 1;
 	}
 }
 

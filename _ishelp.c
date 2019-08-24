@@ -3,28 +3,31 @@
  * _ishelp - if args[0] is help builtin
  * @p: input pointer
  * @loop: counter of loops
- * Return: Nothing.
+ * Return: 0 if help exist or -1 if not.
  */
-void _ishelp(char **p, int loop)
+int _ishelp(char **p, int loop)
 {
 	char str[] = "help";
-	int i = 0, j = 0, cont = 0;
+	int i = 0, cont = 0, salida = -1;
 
-	while (p[0][j] != '\0')
-		j++;
-	if (j == 4)
+	while (i < 5)
 	{
-		while (i < 4)
+		if (i < 4)
 		{
 			if (p[0][i] == str[i])
 				cont++;
-			i++;
 		}
-		if (cont == 4)
-		{
-			_help(p, loop);
-		}
+		else
+			if (p[0][i] == '\0')
+				cont++;
+		i++;
 	}
+	if (cont == 5)
+	{
+		_help(p, loop);
+		salida = 0;
+	}
+	return (salida);
 }
 /**
  * _help_builtin - help of builtin

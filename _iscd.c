@@ -8,24 +8,29 @@
 int _iscd(char **p, int loop)
 {
 	char str[3] = "cd";
-	int i = 0, j = 0, cont = 0, valor = -1;
+	int i = 0, cont = 0, valor = -1;
 
-	while (p[0][j] != '\0')
+	while (i < 3)
 	{
-		j++;
-	}
-	if (j == 2)
-	{
-		while (i < 2)
+		if (i < 2)
 		{
 			if (p[0][i] == str[i])
 				cont++;
-			i++;
 		}
-		if (cont == 2)
-		{
-			valor = _cd(p, loop);
-		}
+		else
+			if (p[0][i] == '\0')
+				cont++;
+		i++;
+	}
+	if (cont == 3)
+	{
+		_cd(p, loop);
+		valor = 0;
+	}
+	else if (cont == 2)
+	{
+		_put_err(p, loop, 3);
+		valor = 0;
 	}
 	return (valor);
 }
@@ -35,9 +40,9 @@ int _iscd(char **p, int loop)
  * @loop: loops counter
  * Return:-1 if not find the directory or 0 if success
  */
-int _cd(char **a, int loop)
+void _cd(char **a, int loop)
 {
-	int valor = -1, i;
+	int valor = 0, i;
 	static char buf[2048];
 	static int w = 1;
 	char *aux2, aux[2048] = {0};
@@ -54,7 +59,6 @@ int _cd(char **a, int loop)
 		valor = chdir((const char *)_gethome());
 		if (valor == -1)
 			_put_err(a, loop, 1);
-		return (valor);
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
@@ -66,7 +70,6 @@ int _cd(char **a, int loop)
 			_put_err(a, loop, 1);
 		for (i = 0; i < 2048; i++)
 			buf[i] = aux[i];
-		return (valor);
 	}
 	else
 	{
@@ -74,6 +77,5 @@ int _cd(char **a, int loop)
 		valor = chdir((const char *)a[1]);
 		if (valor == -1)
 			_put_err(a, loop, 1);
-		return (valor);
 	}
 }

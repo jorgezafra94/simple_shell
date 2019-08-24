@@ -6,8 +6,9 @@
  * @loop: counter of loops
  * @line: input user
  * @i: number of pointers inside the array of pointers
+ * @v: arguments in input
  */
-void type_exit(char **p, int loop, char *line, int i)
+void type_exit(char **p, int loop, char *line, int i, char *v[])
 {
 	unsigned int valor = 0, cont = 0, flag = 0;
 
@@ -29,7 +30,7 @@ void type_exit(char **p, int loop, char *line, int i)
 			cont++;
 		}
 		if (flag == 1)
-			_put_err(p, loop, 1);
+			_put_err(p, loop, 1, v);
 		else
 		{
 			valor = _atoi(p[1]);
@@ -42,7 +43,7 @@ void type_exit(char **p, int loop, char *line, int i)
 				exit(valor);
 			}
 			else
-				_put_err(p, loop, 1);
+				_put_err(p, loop, 1, v);
 		}
 	}
 }
@@ -52,8 +53,9 @@ void type_exit(char **p, int loop, char *line, int i)
  * @loop: loop counter
  * @line: input user
  * @x: number of pointers inside array of pointers
+ * @v: arguments in input
  */
-int _isexit(char **p, int loop, char *line, int x)
+int _isexit(char **p, int loop, char *line, int x, char *v[])
 {
 	char str[5] = "exit";
 	int i = 0, cont = 0, salida = -1;
@@ -74,13 +76,13 @@ int _isexit(char **p, int loop, char *line, int x)
 	}
 	if (cont == 5)
 	{
-		type_exit(p, loop, line, x);
+		type_exit(p, loop, line, x, v);
 		salida = 0;
 	}
 	if (cont == 4)
 	{
 		salida = 0;
-		_put_err(p, loop, 3);
+		_put_err(p, loop, 3, v);
 	}
 	return (salida);
 }

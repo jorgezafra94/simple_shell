@@ -5,21 +5,22 @@
  *@loop: counter of loops
  *@line: input user
  *@i:number of pointers inside array of pointers
+ *@argv: arguments in input
  * Return: -1 if the input is different to env or cd
  *or 0 if the input is cd or env
  */
-int revision(char **p, int loop, char *line, int i)
+int revision(char **p, int loop, char *line, int i, char *argv[])
 {
 	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
 
-	valex = _isexit(p, loop, line, i);
+	valex = _isexit(p, loop, line, i, argv);
 	if (valex == 0)
 		return (valex);
-	valhel = _ishelp(p, loop);
+	valhel = _ishelp(p, loop, argv);
 	if (valhel == 0)
 		return (valhel);
 	valenv = _isenv(p);
-	valcd = _iscd(p, loop);
+	valcd = _iscd(p, loop, argv);
 	if (valenv == 0)
 		return (valenv);
 	if (valcd == 0)
@@ -30,12 +31,13 @@ int revision(char **p, int loop, char *line, int i)
  *main - shell skeleton
  * Return: 0 on Success
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	char *line = NULL;
 	char **args = NULL;
 	int value = 1, i = 0, *ploop;
 	static int loop;
+	(void)argc;
 
 	loop = 0;
 	ploop = &loop;
@@ -47,12 +49,12 @@ int main(void)
 		{
 			for (i = 0; args[i] != NULL; i++)
 				;
-			value = revision(args, loop, line, i);
+			value = revision(args, loop, line, i, argv);
 			if (value != 0)
 			{
 				args = checkbin(args);
 				if (args)
-					_forky(args, line, i, loop);
+					_forky(args, line, i, loop, argv);
 			}
 			free_grid(args, i);
 			free(line);
@@ -62,7 +64,7 @@ int main(void)
 			free(line);
 			fflush(STDIN_FILENO);
 		}
-		_put_err(args, loop, 0);
+		_put_err(args, loop, 0, argv);
 	}
 		return (0);
 }

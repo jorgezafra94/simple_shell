@@ -39,7 +39,10 @@ char  *_getline(int *a)
 			return (line);
 	}
 	if (num == 0)
+	{
 		write(STDIN_FILENO, "\n", 1);
+		exit(0);
+	}
 	free(line);
 	return (NULL);
 }

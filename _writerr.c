@@ -34,11 +34,11 @@ void print_number(int n)
  * @p: input pointer
  * @loop: counter of loops
  * @sig: signal
+ * @v: arguments in input
  * Return: Nothing.
  */
-void _put_err(char **p, int loop, int sig)
+void _put_err(char **p, int loop, int sig, char *v[])
 {
-	char prompt[] = "./hsh";
 	static int pr = 1;
 
 	if (sig == 0)
@@ -48,7 +48,7 @@ void _put_err(char **p, int loop, int sig)
 		pr = 3;
 	if (pr == 2 || (pr == 3 && sig ==3))
 	{
-		write(STDERR_FILENO, prompt, 5);
+		write(STDERR_FILENO, v[0], _strlen(v[0]));
 		write(STDERR_FILENO, ":", 1);
 		write(STDERR_FILENO, " ", 1);
 		print_number(loop);

@@ -6,10 +6,11 @@
  * @line: input typed by the user
  * @a: count of pointers
  * @loop: count of loops
+ * @v: arguments in input
  * Return: Nothing.
  */
 
-void _forky(char **p, char *line, int a, int loop)
+void _forky(char **p, char *line, int a, int loop, char *v[])
 {
 	pid_t child_pid;
 	int status;
@@ -24,7 +25,7 @@ void _forky(char **p, char *line, int a, int loop)
 	{
 		if (execve(p[0], p, NULL) == -1)
 		{
-			_put_err(p, loop, 3);
+			_put_err(p, loop, 3, v);
 		}
 		free(line);
 		free_grid(p, a);

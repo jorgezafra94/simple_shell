@@ -23,16 +23,16 @@ char **parsing(char *line);
 
 /*char _getline_av(char *buffer);*/
 void free_grid(char **grid, int height);
-void _forky(char **p, char *line, int a, int loop);
+void _forky(char **p, char *line, int a, int loop, char *v[]);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **checkbin(char **b);
 void *_realloc2(char *a, char *p, unsigned int old, unsigned int new_size);
-int  _isexit(char **p, int loop, char *line, int x);
+int  _isexit(char **p, int loop, char *line, int x, char *v[]);
 void _signal(int s);
 int _isenv(char **p);
 void _env(char *p);
-void _cd(char **a, int loop);
-int _iscd(char **p, int loop);
+void _cd(char **a, int loop, char *v[]);
+int _iscd(char **p, int loop, char *v[]);
 char *_gethome(void);
 char *_getpwd(void);
 int _atoi(char *s);
@@ -41,16 +41,16 @@ char *_strtoky(char *s, char *d);
 #define SIZE 1024
 
 /* help files*/
-int _ishelp(char **p, int loop);
-void _help_builtin(char **p, int loop);
-void _help(char **p, int loop);
+int _ishelp(char **p, int loop, char *v[]);
+void _help_builtin(char **p, int loop, char *v[]);
+void _help(char **p, int loop, char *v[]);
 ssize_t read_help(void);
 ssize_t read_cdhelp(void);
 ssize_t read_exithelp(void);
 ssize_t read_helphelp(void);
 
 /* errors */
-void _put_err(char **p, int loop, int sig);
+void _put_err(char **p, int loop, int sig, char *v[]);
 void _builtinerr(char **p);
 void _errorcd(char **p);
 void _errorexit(char **p);

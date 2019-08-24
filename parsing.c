@@ -34,13 +34,13 @@ char **parsing(char *line)
 	int length = 0, j = 0, i = 0, buffsize = 0;
 
 	if (line == NULL)
-		exit(EXIT_FAILURE);
+		return (NULL);
 	buffsize = Counter(line, " ");
 	p = _calloc((buffsize + 1), sizeof(char *));
 	if (!p)
 	{
 		perror("No memory");
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 /*store the token partition inside **p */
 	token = _strtoky(line, " \t\n");
@@ -58,7 +58,7 @@ char **parsing(char *line)
 		{
 			free_grid(p, j);
 			perror("No memory");
-			exit(EXIT_FAILURE);
+			return (NULL);
 		}
 /*fill the pointer with the content of token*/
 		for (i = 0; i < length; i++)

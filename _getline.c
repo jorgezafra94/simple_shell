@@ -6,36 +6,39 @@
  */
 char  *_getline(int *a)
 {
-	char *line = NULL;
+	char letter[1] = {0}, *line = NULL;
 	size_t bufsize = 0;
-	int num = 0, pos = 0;
-/* this step is for not get an uninitialized variable in valgrind*/
-	write(STDIN_FILENO, "#cisfun$ ", 9);
-	*a = *a + 1;
-/*verify the Crtl+c Interrupt Signal*/
-	signal(SIGINT, _signal);
-	num = getline(&line, &bufsize, stdin);
-/* infinity loop while is different of EOF or error*/
-	while (num != -1)
+	int num = 1;
+
+	while (num != 0)
 	{
-/* terminate when input is exit */
-		pos = 0;
-		if (!(line[0] == '\n'))
-		{
-			while (line[pos] != '\0')
-			{
-				if (line[pos] == '\n')
-					return (line);
-				pos++;
-			}
-		}
+		bufsize = 0;
 		write(STDIN_FILENO, "#cisfun$ ", 9);
 		*a = *a + 1;
 		signal(SIGINT, _signal);
-		num = getline(&line, &bufsize, stdin);
+
+		while ((num = read(STDIN_FILENO, letter, 1)) > 0)
+		{
+			if (bufsize == 0)
+				line = _calloc(bufsize + 1, sizeof(char));
+			else
+				line = _realloc(line, bufsize, bufsize + 1);
+			if (!line)
+			{
+				num = 0;
+				break;
+			}
+			line[bufsize] = letter[0];
+			if (line[bufsize] == '\n')
+				break;
+			bufsize++;
+		}
+		if (!line && num == 0)
+			break;
+		if (line[0] != '\n')
+			return (line);
 	}
-/* to get an end of line when the shell finish*/
-	if (num == -1)
+	if (num == 0)
 		write(STDIN_FILENO, "\n", 1);
 	free(line);
 	return (NULL);

@@ -14,6 +14,7 @@ ssize_t read_help(void)
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
+
 	fd = open("./_helpfiles/help_all.txt", O_RDONLY);
 	if (fd == -1)
 		return (0);

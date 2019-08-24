@@ -52,7 +52,7 @@ void _put_err(char **p, int loop, int sig)
 		write(STDERR_FILENO, prompt, 5);
 		write(STDERR_FILENO, ":", 1);
 		write(STDERR_FILENO, " ", 1);
-	        print_number(loop);
+		print_number(loop);
 		write(STDERR_FILENO, ":", 1);
 		write(STDERR_FILENO, " ", 1);
 		_builtinerr(p);
@@ -85,7 +85,7 @@ void _builtinerr(char **p)
 			if (p[0][i] == str2[i])
 				cont++;
 		if (cont == 4)
-			_errorexit(p);	
+			_errorexit(p);
 		for (i = 0; i < 4; i++)
 			if (p[0][i] == str3[i])
 				cont2++;
@@ -93,4 +93,3 @@ void _builtinerr(char **p)
 			_errorhelp(p);
 	}
 }
-

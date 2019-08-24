@@ -34,6 +34,22 @@ int _iscd(char **p, int loop)
 	}
 	return (valor);
 }
+void _cleancd(char *c)
+{
+	int i;
+
+	for (i = 0; i < 2048; i++)
+		c[i] = 0;
+}
+void _fullcd(char *f, char *aux)
+{
+	int w;
+
+	for (w = 0; aux[w] != '\0'; w++)
+		f[w] = aux[w];
+	for (; w < 2048; w++)
+		f[w] = 0;
+}
 /**
  * _cd - Changes the current directory of the process.
  * @a: input of user, array of pointers
@@ -42,19 +58,19 @@ int _iscd(char **p, int loop)
  */
 void _cd(char **a, int loop)
 {
-	int valor = 0, i;
+	int valor = 0;
 	static char buf[2048];
 	static int w = 1;
-	char *aux2, aux[2048] = {0};
+	char aux[2048] = {0};
 
 	if (w == 1)
 	{
-		aux2 = _gethome();
-		for (w = 0; aux2[w] != '\0'; w++)
-			buf[w] = aux2[w];
+		_fullcd(buf, _gethome());
+		w++;
 	}
 	if (a[1] == NULL)
 	{
+		_cleancd(buf);
 		getcwd(buf, 2048);
 		valor = chdir((const char *)_gethome());
 		if (valor == -1)
@@ -62,17 +78,18 @@ void _cd(char **a, int loop)
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
+		_cleancd(aux);
 		getcwd(aux, 2048);
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
 		if (valor == -1)
 			_put_err(a, loop, 1);
-		for (i = 0; i < 2048; i++)
-			buf[i] = aux[i];
+	        _fullcd(buf, aux);
 	}
 	else
 	{
+		_cleancd(buf);
 		getcwd(buf, 2048);
 		valor = chdir((const char *)a[1]);
 		if (valor == -1)

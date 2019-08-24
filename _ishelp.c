@@ -11,18 +11,18 @@ int _ishelp(char **p, int loop, char *v[])
 	char str[] = "help";
 	int i = 0, cont = 0, salida = -1;
 
-	while (i < 5)
+	while (p[0][i])
 	{
 		if (i < 4)
 		{
 			if (p[0][i] == str[i])
 				cont++;
 		}
-		else
-			if (p[0][i] == '\0')
-				cont++;
 		i++;
 	}
+	if (i == 4)
+		cont++;
+
 	if (cont == 5)
 	{
 		_help(p, loop, v);

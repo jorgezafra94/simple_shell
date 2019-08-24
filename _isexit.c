@@ -57,29 +57,28 @@ void type_exit(char **p, int loop, char *line, int i, char *v[])
  */
 int _isexit(char **p, int loop, char *line, int x, char *v[])
 {
-	char str[5] = "exit";
-	int i = 0, cont = 0, salida = -1;
+	char str[] = "exit";
+	int i, cont = 0, salida = -1;
 
-	while (i < 5)
+	i = 0;
+	while (p[0][i] != '\0')
 	{
 		if (i < 4)
 		{
 			if (p[0][i] == str[i])
 				cont++;
 		}
-		else
-		{
-			if (p[0][i] == '\0')
-				cont++;
-		}
 		i++;
 	}
+	if (i == 4)
+		cont++;
+
 	if (cont == 5)
 	{
 		type_exit(p, loop, line, x, v);
 		salida = 0;
 	}
-	if (cont == 4)
+	else if (cont == 4)
 	{
 		salida = 0;
 		_put_err(p, loop, 3, v);

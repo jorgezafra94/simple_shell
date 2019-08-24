@@ -8,21 +8,21 @@
  */
 int _iscd(char **p, int loop, char *v[])
 {
-	char str[3] = "cd";
+	char str[] = "cd";
 	int i = 0, cont = 0, valor = -1;
 
-	while (i < 3)
+	while (p[0][i] != '\0')
 	{
 		if (i < 2)
 		{
 			if (p[0][i] == str[i])
 				cont++;
 		}
-		else
-			if (p[0][i] == '\0')
-				cont++;
 		i++;
 	}
+	if (i == 2)
+		cont++;
+
 	if (cont == 3)
 	{
 		_cd(p, loop, v);
@@ -74,27 +74,33 @@ void _cd(char **a, int loop, char *v[])
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
+		/*old = buf*/
 		valor = chdir((const char *)_gethome());
 		if (valor == -1)
 			_put_err(a, loop, 1, v);
+		/*pwd = _get(home)*/
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
 		_cleancd(aux);
 		getcwd(aux, 2048);
+		/*old = aux*/
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
 		if (valor == -1)
 			_put_err(a, loop, 1, v);
+		/*pwd = buf */
 	        _fullcd(buf, aux);
 	}
 	else
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
+		/*old = buf*/
 		valor = chdir((const char *)a[1]);
 		if (valor == -1)
 			_put_err(a, loop, 1, v);
+		/*pwd = buf*/
 	}
 }

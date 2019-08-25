@@ -2,9 +2,11 @@
 /**
  * _getline - function to read what the user writes
  * @a: pointer to loop counter
+ * @e: length of m
+ * @m: copy of environmental
  * Return: line in sucess otherwise NULL.
  */
-char  *_getline(int *a)
+char  *_getline(int *a, char **m, int e)
 {
 	char letter[1] = {0}, *line = NULL;
 	size_t bufsize = 0;
@@ -40,9 +42,10 @@ char  *_getline(int *a)
 	}
 	if (num == 0)
 	{
+		free(line);
+		free_grid(m, e);
 		write(STDIN_FILENO, "\n", 1);
 		exit(0);
 	}
-	free(line);
 	return (NULL);
 }

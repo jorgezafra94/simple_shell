@@ -35,6 +35,12 @@ int _iscd(char **p, int loop, char *v[])
 	}
 	return (valor);
 }
+
+/**
+ * _cleancd - clean buffer
+ * @c: pointer to buf
+ * Return: -1 if not success 0 if exist cd in args[0]
+ */
 void _cleancd(char *c)
 {
 	int i;
@@ -42,6 +48,13 @@ void _cleancd(char *c)
 	for (i = 0; i < 2048; i++)
 		c[i] = 0;
 }
+
+/**
+ * _fullcd - fill buffer
+ * @f: pointer to buf
+ * @aux: pointer to aux
+ * Return: -1 if not success 0 if exist cd in args[0]
+ */
 void _fullcd(char *f, char *aux)
 {
 	int w;
@@ -78,7 +91,7 @@ void _cd(char **a, int loop, char *v[])
 		valor = chdir((const char *)_gethome());
 		if (valor == -1)
 			_put_err(a, loop, 1, v);
-		/*pwd = _get(home)*/
+		/*pwd = _gethome()*/
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{

@@ -7,10 +7,12 @@
  * @a: count of pointers
  * @loop: count of loops
  * @v: arguments in input
+ * @e: env length
+ * @m: copy of environmental variable
  * Return: Nothing.
  */
 
-void _forky(char **p, char *line, int a, int loop, char *v[])
+void _forky(char **p, char *line, int a, int loop, char *v[], int e, char **m)
 {
 	pid_t child_pid;
 	int status;
@@ -29,6 +31,7 @@ void _forky(char **p, char *line, int a, int loop, char *v[])
 		}
 		free(line);
 		free_grid(p, a);
+		free_grid(m, e);
 		/*printf("After execve\n");*/
 		exit(127);
 	}

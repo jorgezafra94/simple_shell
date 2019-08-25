@@ -6,7 +6,7 @@
  * @v: arguments in input
  * Return: -1 if not success 0 if exist cd in args[0]
  */
-int _iscd(char **p, int loop, char *v[])
+int _iscd(char **p, int loop, char *v[], char **myenv)
 {
 	char str[] = "cd";
 	int i = 0, cont = 0, valor = -1;
@@ -25,7 +25,7 @@ int _iscd(char **p, int loop, char *v[])
 
 	if (cont == 3)
 	{
-		_cd(p, loop, v);
+		_cd(p, loop, v, myenv);
 		valor = 0;
 	}
 	else if (cont == 2)
@@ -71,7 +71,7 @@ void _fullcd(char *f, char *aux)
  * @v: arguments in input
  * Return:-1 if not find the directory or 0 if success
  */
-void _cd(char **a, int loop, char *v[])
+void _cd(char **a, int loop, char *v[], char **myenv)
 {
 	int valor = 0;
 	static char buf[2048];
@@ -87,12 +87,14 @@ void _cd(char **a, int loop, char *v[])
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
+		_updatepwd(buf, myenv);
 		valor = chdir((const char *)_gethome());
-	}
+        }
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
 		_cleancd(aux);
 		getcwd(aux, 2048);
+		_updatepwd(aux, myenv);
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
@@ -102,6 +104,7 @@ void _cd(char **a, int loop, char *v[])
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
+		_updatepwd(buf, myenv);
 		valor = chdir((const char *)a[1]);
 	}
 	if (valor == -1)

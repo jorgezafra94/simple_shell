@@ -6,7 +6,7 @@
  *@line: input user
  *@i:number of pointers inside array of pointers
  *@argv: arguments in input
- * @env: copy of environmental variable
+ *@myenv: copy of environmental variable
  * Return: -1 if the input is different to env or cd
  *or 0 if the input is cd or env
  */
@@ -29,7 +29,9 @@ int revision(char **p, int loop, char *line, int i, char *argv[], char **myenv)
 	return (other);
 }
 /**
- *main - shell skeleton
+ * main - shell skeleton
+ * @argc: number of arguments in the input
+ * @argv: arguments in the input
  * Return: 0 on Success
  */
 int main(int argc, char *argv[])

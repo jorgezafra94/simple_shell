@@ -2,6 +2,7 @@
 /**
  * _isenv - finds if line input is env
  * @p: input of user, array of pointers
+ * @myenv: copy of environmental variables
  * Return: -1 if fails or 0 if success
  */
 int _isenv(char **p, char **myenv)
@@ -27,18 +28,20 @@ int _isenv(char **p, char **myenv)
 	}
 	return (-1);
 }
+/**
+ * create_env - create a copy of the environmental variables
+ * Return: array of pointers that stores each element of environ variables
+ */
 char **create_env(void)
 {
 	int i, j = 0, c = 0;
-        char **myenv = NULL;
+	char **myenv = NULL;
 
 	for (i = 0; environ[i] != NULL; i++)
-	{
 		;
-	}
-        myenv = _calloc(i + 1, sizeof(char *));
+	myenv = _calloc(i + 1, sizeof(char *));
 	if (!myenv)
-                return (NULL);
+		return (NULL);
 	while (environ[j] != NULL)
 	{
 		c = 0;
@@ -50,12 +53,12 @@ char **create_env(void)
 			free_grid(myenv, j);
 			return (NULL);
 		}
-                for (i = 0; i < c; i++)
+		for (i = 0; i < c; i++)
 			myenv[j][i] = environ[j][i];
 		j++;
-        }
+	}
 	myenv[j] = NULL;
-        return (myenv);
+	return (myenv);
 }
 /**
  * _env - function to print the environment variables

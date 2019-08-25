@@ -46,7 +46,7 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	pr++;
 	if (sig == 3)
 		pr = 3;
-	if (pr == 2 || (pr == 3 && sig ==3))
+	if (pr == 2 || (pr == 3 && sig == 3))
 	{
 		write(STDERR_FILENO, v[0], _strlen(v[0]));
 		write(STDERR_FILENO, ":", 1);
@@ -57,7 +57,7 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	}
 	if (pr == 2)
 		_builtinerr(p);
-        else if (pr == 3 && sig == 3)
+	else if (pr == 3 && sig == 3)
 	{
 		_errorgarbage(p);
 		pr = 1;

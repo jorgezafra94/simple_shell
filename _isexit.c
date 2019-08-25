@@ -54,6 +54,7 @@ void type_exit(char **p, int loop, char *line, int i, char *v[])
  * @line: input user
  * @x: number of pointers inside array of pointers
  * @v: arguments in input
+ * Return: -1 if there is no exit or 0 if there is the word exit
  */
 int _isexit(char **p, int loop, char *line, int x, char *v[])
 {

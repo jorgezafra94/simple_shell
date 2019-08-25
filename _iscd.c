@@ -87,33 +87,23 @@ void _cd(char **a, int loop, char *v[])
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
-		/*old = buf*/
 		valor = chdir((const char *)_gethome());
-		if (valor == -1)
-			_put_err(a, loop, 1, v);
-		/*pwd = _gethome()*/
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
 		_cleancd(aux);
 		getcwd(aux, 2048);
-		/*old = aux*/
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
-		if (valor == -1)
-			_put_err(a, loop, 1, v);
-		/*pwd = buf */
-	        _fullcd(buf, aux);
+		_fullcd(buf, aux);
 	}
 	else
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
-		/*old = buf*/
 		valor = chdir((const char *)a[1]);
-		if (valor == -1)
-			_put_err(a, loop, 1, v);
-		/*pwd = buf*/
 	}
+	if (valor == -1)
+		_put_err(a, loop, 1, v);
 }

@@ -87,14 +87,14 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
-		_updatepwd(buf, myenv);
+		_updateoldpwd(buf, myenv);
 		valor = chdir((const char *)_gethome());
         }
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
 		_cleancd(aux);
 		getcwd(aux, 2048);
-		_updatepwd(aux, myenv);
+		_updateoldpwd(aux, myenv);
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
@@ -104,7 +104,7 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 	{
 		_cleancd(buf);
 		getcwd(buf, 2048);
-		_updatepwd(buf, myenv);
+		_updateoldpwd(buf, myenv);
 		valor = chdir((const char *)a[1]);
 	}
 	if (valor == -1)

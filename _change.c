@@ -6,7 +6,7 @@
  * @myenv: copy of environmental variable
  * Return: the string inside PWD env variable
  */
-void _updatepwd(char *buf, char **myenv)
+void _updateoldpwd(char *buf, char **myenv)
 {
 	char *entirepwd;
 	char str[] = "OLDPWD=";
@@ -19,9 +19,9 @@ void _updatepwd(char *buf, char **myenv)
                 {
 			if (j < 7)
 			{
-				if (myenv[i][j] == str[j])	
+				if (myenv[i][j] == str[j])
 					cont++;
-				else 
+				else
 					break;
 			}
 			else
@@ -50,4 +50,3 @@ void _updatepwd(char *buf, char **myenv)
 	}
 	free(entirepwd);
 }
-

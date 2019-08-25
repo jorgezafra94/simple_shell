@@ -14,6 +14,7 @@
 /*global variables*/
 extern char **environ;
 char **create_env(void);
+void _updateoldpwd(char *buf, char **myenv);
 
 /* shell functions*/
 void _noargv(char *argv[]);
@@ -35,8 +36,8 @@ int  _isexit(char **p, int loop, char *line, int x, char *v[]);
 void _signal(int s);
 int _isenv(char **p, char **myenv);
 void _env(char **myenv);
-void _cd(char **a, int loop, char *v[], char *myenv);
-int _iscd(char **p, int loop, char *v[], char *myenv);
+void _cd(char **a, int loop, char *v[], char **myenv);
+int _iscd(char **p, int loop, char *v[], char **myenv);
 char *_gethome(void);
 char *_changepwd(void);
 char *_changeoldpwd(void);

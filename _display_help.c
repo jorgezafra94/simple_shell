@@ -9,13 +9,16 @@ ssize_t read_help(void)
 {
 	int fd, r, w;
 	char *buf;
+	char helpfiles[] = "/simple_shell/_helpfiles/help_all.txt";
+	char *home, *helpdir;
 	size_t letters = 1024;
 
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-
-	fd = open("./_helpfiles/help_all.txt", O_RDONLY);
+	home = _gethome();
+        helpdir = str_concat(home, helpfiles);
+        fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{
 		free(buf);
@@ -47,12 +50,16 @@ ssize_t read_cdhelp(void)
 {
 	int fd, r, w;
 	char *buf;
+	char helpfiles[] = "/simple_shell/_helpfiles/help_cd.txt";
+        char *home, *helpdir;
 	size_t letters = 1024;
 
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	fd = open("./_helpfiles/help_cd.txt", O_RDONLY);
+	home = _gethome();
+        helpdir = str_concat(home, helpfiles);
+	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{	
 		free(buf);
@@ -84,12 +91,16 @@ ssize_t read_exithelp(void)
 {
 	int fd, r, w;
 	char *buf;
+	char helpfiles[] = "/simple_shell/_helpfiles/help_exit.txt";
+        char *home, *helpdir;
 	size_t letters = 1024;
 
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	fd = open("./_helpfiles/help_exit.txt", O_RDONLY);
+	home = _gethome();
+        helpdir = str_concat(home, helpfiles);
+	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{
 		free(buf);
@@ -121,12 +132,16 @@ ssize_t read_helphelp(void)
 {
 	int fd, r, w;
 	char *buf;
+	char helpfiles[] = "/simple_shell/_helpfiles/help_help.txt";
+        char *home, *helpdir;
 	size_t letters = 1024;
 
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	fd = open("./_helpfiles/help_help.txt", O_RDONLY);
+	home = _gethome();
+        helpdir = str_concat(home, helpfiles);
+	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{
 		free(buf);

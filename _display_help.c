@@ -21,22 +21,26 @@ ssize_t read_help(void)
         fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	r = read(fd, buf, letters);
 	if (r == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	w = write(STDOUT_FILENO, buf, r);
 	if (w == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	close(fd);
+	free(helpdir);
 	free(buf);
 	return (r);
 }
@@ -61,23 +65,27 @@ ssize_t read_cdhelp(void)
         helpdir = str_concat(home, helpfiles);
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
-	{	
+	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	r = read(fd, buf, letters);
 	if (r == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	w = write(STDOUT_FILENO, buf, r);
 	if (w == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	close(fd);
+	free(helpdir);
 	free(buf);
 	return (r);
 }
@@ -103,22 +111,26 @@ ssize_t read_exithelp(void)
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	r = read(fd, buf, letters);
 	if (r == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	w = write(STDOUT_FILENO, buf, r);
 	if (w == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	close(fd);
+	free(helpdir);
 	free(buf);
 	return (r);
 }
@@ -144,22 +156,26 @@ ssize_t read_helphelp(void)
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	r = read(fd, buf, letters);
 	if (r == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	w = write(STDOUT_FILENO, buf, r);
 	if (w == -1)
 	{
+		free(helpdir);
 		free(buf);
 		return (0);
 	}
 	close(fd);
+	free(helpdir);
 	free(buf);
 	return (r);
 }

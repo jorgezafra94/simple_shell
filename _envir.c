@@ -35,7 +35,7 @@ int _isenv(char **p, char **myenv)
 char **create_env(void)
 {
 	int i, j = 0, c = 0;
-	char **myenv = NULL;
+	static char **myenv = NULL;
 
 	for (i = 0; environ[i] != NULL; i++)
 		;

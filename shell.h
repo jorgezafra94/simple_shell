@@ -26,6 +26,7 @@ int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 char *_getline(int *a, char **m, int e);
 char **parsing(char *line);
+char *_comments(char *line);
 
 /*char _getline_av(char *buffer);*/
 void free_grid(char **grid, int height);

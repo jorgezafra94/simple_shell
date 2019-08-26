@@ -22,6 +22,7 @@ void _yesargv(char *argv[], char *envp[])
 				;
 		}
 		line = _getline(ploop, m, e);
+		line = _comments(line);
 		args = parsing(line);
 		if (args)
 		{

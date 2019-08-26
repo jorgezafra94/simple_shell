@@ -36,8 +36,7 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e)
  */
 void _noargv(char *argv[], char *envp[])
 {
-	char *line = NULL;
-	char **args = NULL, **m = NULL;
+	char *line = NULL, **args = NULL, **m = NULL;
 	int value = 1, i = 0, e = 0, *ploop;
 	static int loop;
 
@@ -52,6 +51,7 @@ void _noargv(char *argv[], char *envp[])
 				;
 		}
 		line = _getline(ploop, m, e);
+		line = _comments(line);
 		args = parsing(line);
 		if (args)
 		{

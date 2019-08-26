@@ -7,19 +7,20 @@
  */
 int Counter(char *L, char *lim)
 {
-	int ct = 0, num = 0;
+	int ct = 0, num = 0, ct2 = 0;
 
-	if (lim != NULL)
+	while (lim[ct2] != '\0')
 	{
 		while (L && L[ct] != '\0')
 		{
-			if (L[ct] != lim[0])
+			if (L[ct] != lim[ct2])
 			{
-				if (L[ct + 1] == lim[0] || L[ct + 1] == '\0')
+				if (L[ct + 1] == lim[ct2] || L[ct + 1] == '\0')
 					num++;
 			}
 			ct++;
 		}
+		ct2++;
 	}
 	return (num);
 }

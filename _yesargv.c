@@ -6,9 +6,8 @@
  */
 void _yesargv(char *argv[], char *envp[])
 {
-	char *line = NULL;
-	char **args = NULL, **m = NULL;
-	int value = 1, i = 0, e = 0, *ploop;
+	char *line = NULL, **m = NULL;
+	int e = 0, *ploop;
 	static int loop;
 
 	loop = 0;
@@ -21,29 +20,10 @@ void _yesargv(char *argv[], char *envp[])
 			for (e = 0; m[e] != NULL; e++)
 				;
 		}
-		line = _getline(ploop, m, e);
-		line = _comments(line);
-		args = parsing(line);
-		if (args)
-		{
-			for (i = 0; args[i] != NULL; i++)
-				;
-			value = revision(args, loop, line, i, argv, m, e);
-			if (value != 0)
-			{
-				args = checkbin(args, m);
-				if (args)
-					_forky(args, line, i, loop, argv, e, m);
-			}
-			free_grid(args, i);
-			free(line);
-		}
+		line = _getlineav(ploop, m, e);
+		if (line[0] == ';')
+			perror("PAILA");
 		else
-		{
-			free_grid(m, e);
-			free(line);
-			fflush(STDIN_FILENO);
-		}
-		_put_err(args, loop, 0, argv);
+			functions(line, loop, argv, m, e);
 	}
 }

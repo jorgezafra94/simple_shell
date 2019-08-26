@@ -30,14 +30,48 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e)
 	return (other);
 }
 /**
+ *
+ *
+ *
+ *
+ */
+void functions(char *line, int loop, char *argv[], char **m, int e)
+{
+	char **args = NULL;
+	int value = 1, i = 0;
+
+	line = _comments(line);
+	args = parsing(line);
+	if (args)
+	{
+		for (i = 0; args[i] != NULL; i++)
+			;
+		value = revision(args, loop, line, i, argv, m, e);
+		if (value != 0)
+		{
+			args = checkbin(args, m);
+			if (args)
+				_forky(args, line, i, loop, argv, e, m);
+		}
+		free_grid(args, i);
+		free(line);
+	}
+	else
+	{
+		free(line);
+		fflush(STDIN_FILENO);
+	}
+	_put_err(args, loop, 0, argv);
+}
+/**
  * _noargv - shell form without filename at input
  * @argv: arguments in the input
  * @envp: environment variables
  */
 void _noargv(char *argv[], char *envp[])
 {
-	char *line = NULL, **args = NULL, **m = NULL;
-	int value = 1, i = 0, e = 0, *ploop;
+	char *line = NULL, **m = NULL;
+	int e = 0, *ploop;
 	static int loop;
 
 	loop = 0;
@@ -51,27 +85,9 @@ void _noargv(char *argv[], char *envp[])
 				;
 		}
 		line = _getline(ploop, m, e);
-		line = _comments(line);
-		args = parsing(line);
-		if (args)
-		{
-			for (i = 0; args[i] != NULL; i++)
-				;
-			value = revision(args, loop, line, i, argv, m, e);
-			if (value != 0)
-			{
-				args = checkbin(args, m);
-				if (args)
-					_forky(args, line, i, loop, argv, e, m);
-			}
-			free_grid(args, i);
-			free(line);
-		}
+		if (line[0] == ';')
+			perror("PAILA");
 		else
-		{
-			free(line);
-			fflush(STDIN_FILENO);
-		}
-		_put_err(args, loop, 0, argv);
+			functions(line, loop, argv, m, e);
 	}
 }

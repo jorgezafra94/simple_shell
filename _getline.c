@@ -58,8 +58,7 @@ char  *_getline(int *a, char **m, int e)
 				num = 0;
 				break;
 			}
-			line[bufsize] = letter[0];
-			line[bufsize + 1] = '\n';
+			line[bufsize] = letter[0], line[bufsize + 1] = '\n';
 			line[bufsize + 2] = '\0';
 			if (line[bufsize] == '\n')
 				break;
@@ -100,16 +99,16 @@ char  *_getlineav(int *a, char **m, int e)
 		while ((num = read(STDIN_FILENO, letter, 1)) > 0)
 		{
 			if (bufsize == 0)
-				line = _calloc(bufsize + 2, sizeof(char));
+				line = _calloc(bufsize + 3, sizeof(char));
 			else
-				line = _realloc(line, bufsize, bufsize + 2);
+				line = _realloc(line, bufsize, bufsize + 3);
 			if (!line)
 			{
 				num = 0;
 				break;
 			}
-			line[bufsize] = letter[0];
-			line[bufsize + 1] = '\n';
+			line[bufsize] = letter[0], line[bufsize + 1] = '\n';
+			line[bufsize + 2] = '\0';
 			if (line[bufsize] == '\n')
 				break;
 			bufsize++;

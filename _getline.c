@@ -41,7 +41,7 @@ char  *_getline(int *a, char **m, int e)
 	static int num = 1;
 
 	if (num == 2)
-		salida2(m, e, line);
+	salida2(m, e, line);
 	for (; (num != 0); bufsize = 0, free(line))
 	{
 		write(STDIN_FILENO, "#cisfun$ ", 9);
@@ -50,9 +50,9 @@ char  *_getline(int *a, char **m, int e)
 		for (; ((num = read(STDIN_FILENO, letter, 1)) > 0); bufsize++)
 		{
 			if (bufsize == 0)
-				line = _calloc(bufsize + 2, sizeof(char));
+				line = _calloc(bufsize + 3, sizeof(char));
 			else
-				line = _realloc(line, bufsize, bufsize + 2);
+				line = _realloc(line, bufsize, bufsize + 3);
 			if (!line)
 			{
 				num = 0;
@@ -60,6 +60,7 @@ char  *_getline(int *a, char **m, int e)
 			}
 			line[bufsize] = letter[0];
 			line[bufsize + 1] = '\n';
+			line[bufsize + 2] = '\0';
 			if (line[bufsize] == '\n')
 				break;
 		}

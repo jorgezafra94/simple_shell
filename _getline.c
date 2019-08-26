@@ -21,7 +21,8 @@ void salida2(char **m, int e, char *line)
  */
 void salida1(char **m, int e, char *line)
 {
-	free(line);
+	(void)line;
+
 	free_grid(m, e);
 	write(STDIN_FILENO, "\n", 1);
 	exit(0);

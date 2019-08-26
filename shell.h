@@ -15,11 +15,11 @@
 extern char **environ;
 char **create_env(void);
 void _updateoldpwd(char *buf, char **myenv);
-
+void _updatepwd(char *buf, char **myenv);
 /* shell functions*/
 void _noargv(char *argv[]);
 void _yesargv(char *argv[]);
-int revision(char **p, int loop, char *line, int i, char *av[], char **myenv);
+int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e);
 char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
@@ -32,7 +32,7 @@ void _forky(char **p, char *line, int a, int loop, char *v[], int e, char **m);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **checkbin(char **b);
 void *_realloc2(char *a, char *p, unsigned int old, unsigned int new_size);
-int  _isexit(char **p, int loop, char *line, int x, char *v[]);
+int  _isexit(char **p, int loop, char *li, int x, char *v[], char **m, int e);
 void _signal(int s);
 int _isenv(char **p, char **myenv);
 void _env(char **myenv);

@@ -26,7 +26,7 @@ void _yesargv(char *argv[])
 		{
 			for (i = 0; args[i] != NULL; i++)
 				;
-			value = revision(args, loop, line, i, argv, m);
+			value = revision(args, loop, line, i, argv, m, e);
 			if (value != 0)
 			{
 				args = checkbin(args);

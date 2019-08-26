@@ -4,6 +4,7 @@
  * @p: input of user, array of pointers
  * @loop: counter of loop
  * @v: arguments in input
+ * @myenv: copy of environment variables
  * Return: -1 if not success 0 if exist cd in args[0]
  */
 int _iscd(char **p, int loop, char *v[], char **myenv)
@@ -69,6 +70,7 @@ void _fullcd(char *f, char *aux)
  * @a: input of user, array of pointers
  * @loop: loops counter
  * @v: arguments in input
+ * @myenv: copy of environment variables
  * Return:-1 if not find the directory or 0 if success
  */
 void _cd(char **a, int loop, char *v[], char **myenv)
@@ -89,7 +91,8 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 		getcwd(buf, 2048);
 		_updateoldpwd(buf, myenv);
 		valor = chdir((const char *)_gethome());
-        }
+		_updatepwd(_gethome(), myenv);
+	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
 		_cleancd(aux);
@@ -98,6 +101,7 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
+		_updatepwd(buf, myenv);
 		_fullcd(buf, aux);
 	}
 	else
@@ -106,6 +110,7 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 		getcwd(buf, 2048);
 		_updateoldpwd(buf, myenv);
 		valor = chdir((const char *)a[1]);
+		_updatepwd(a[1], myenv);
 	}
 	if (valor == -1)
 		_put_err(a, loop, 1, v);

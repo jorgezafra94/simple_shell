@@ -42,17 +42,17 @@ Brief description of every file in this repository.
 	
 | File | Description |
 | ------------- | ------------- |
-| _atoi.c | |
-| _calloc.c | |
-| _change.c | |
-| _display_help.c | |
-| _envir.c | |
-| _errors.c | |
-| _forky.c | |
-| _gethome.c
-| _getline.c | |
-| _iscd.c | |
-| _isexit.c | |
+| _atoi.c | function that gets sign and numbers of string |
+| _calloc.c | function that allocates memory for an array |
+| _change.c | functions that change the OLDPWD and PWD environment variables |
+| _display_help.c | functions that reads all builtins text files and prints it to POSIX stdout |
+| _envir.c | functions to print the environment variables and create a copy of env |
+| _errors.c | functions to print the error for each builtin |
+| _forky.c | program that creates process and execute |
+| _gethome.c | funtion to get the environment variable HOME |
+| _getline.c | functions to read what the user writes |
+| _iscd.c | functions to change the current directory of the process. |
+| _isexit.c |  |
 | _ishelp.c | |
 | _noargv.c | |
 | _realloc.c | |

@@ -1,6 +1,6 @@
 <p align="center"> <img width="335" height="105" src="https://www.holbertonschool.com/holberton-logo.png"></p>
 
-## Simple_Shell
+## Simple_Shell project
 
 This project is a collaboration between Diego López and Jorge Zafra, actual students of Software Engineering at Holberton School. It consists of developing and making our own UNIX command interpreter (Shell).
 
@@ -29,6 +29,8 @@ This shell supports the next builtin commands:
     env - list the current environment variables
 
     exit - exit the shell
+    
+    help - show help for a builtin command
   
 ## Manual
 
@@ -71,9 +73,50 @@ Brief description of every file in this repository.
 | startshell.c | main function that stars the shell (shell skeleton) |
 
 ## Examples
+Some examples for builtins after execute ./hsh
 
+cd:
+
+	#cisfun$ pwd
+	/home/vagrant/simple_shell
+	#cisfun$ cd
+	#cisfun$ pwd
+	/home/vagrant
+	#cisfun$
+	
+cd error:
+
+	#cisfun$ cd hola
+	./hsh: 1: cd: can't cd to hola
+	#cisfun$
+
+exit:
+
+	#cisfun$ exit 123
+	vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ echo $?
+	123
+	
+exit error:
+
+	#cisfun$ exit hola
+	./hsh: 2: exit: Illegal number: hola
+	#cisfun$
+
+help:
+
+	#cisfun$ help exit
+	exit: exit [n]
+    	Exit the shell.
+
+    	Exits the shell with a status of N.  If N is omitted, the exit status
+    	is that of the last command executed.
+	#cisfun$
+
+help error:
+
+	#cisfun$ help hola
+	./hsh: 4: help: no help topics match 'hola'. Try 'help help' or 'man -k 'hola' or info 'hola'
+	#cisfun$
 
 ## Authors
-
 Diego Lopez and Jorge Zafra.
-## End

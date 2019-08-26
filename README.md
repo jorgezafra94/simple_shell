@@ -42,23 +42,33 @@ Brief description of every file in this repository.
 	
 | File | Description |
 | ------------- | ------------- |
+| _atoi.c | |
 | _calloc.c | |
-| checkbin.c | |
+| _change.c | |
+| _display_help.c | |
 | _envir.c | |
-| free_grid.c | |
+| _errors.c | |
 | _forky.c | |
+| _gethome.c
 | _getline.c | |
-| _isexit.c | |
 | _iscd.c | |
-| man_1_simple_shell | |
-| parsing.c | |
-| README.md | |
+| _isexit.c | |
+| _ishelp.c | |
+| _noargv.c | |
 | _realloc.c | |
 | _realloc2.c | |
-| shell.h | |
 | _signal.c | |
+| _str_concat.c | |
 | _strlen.c | |
-| val.c | |
+| _strtoky.c | |
+| _writerr.c | |
+| _yesargv.c | |
+| checkbin.c | |
+| free_grid.c | |
+| man_1_simple_shell | |
+| parsing.c | |
+| shell.h | |
+| startshell.c | |
 
 ## Examples
 

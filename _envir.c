@@ -30,22 +30,23 @@ int _isenv(char **p, char **myenv)
 }
 /**
  * create_env - create a copy of the environmental variables
+ * @envp: environment variables
  * Return: array of pointers that stores each element of environ variables
  */
-char **create_env(void)
+char **create_env(char *envp[])
 {
 	int i, j = 0, c = 0;
 	static char **myenv;
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (i = 0; envp[i] != NULL; i++)
 		;
 	myenv = _calloc(i + 1, sizeof(char *));
 	if (!myenv)
 		return (NULL);
-	while (environ[j] != NULL)
+	while (envp[j] != NULL)
 	{
 		c = 0;
-		while (environ[j][c] != '\0')
+		while (envp[j][c] != '\0')
 			c++;
 		myenv[j] = _calloc(c + 1, sizeof(char));
 		if (myenv[j] == NULL)
@@ -54,7 +55,7 @@ char **create_env(void)
 			return (NULL);
 		}
 		for (i = 0; i < c; i++)
-			myenv[j][i] = environ[j][i];
+			myenv[j][i] = envp[j][i];
 		j++;
 	}
 	myenv[j] = NULL;

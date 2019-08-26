@@ -18,7 +18,7 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e)
 	valex = _isexit(p, loop, li, i, av, m, e);
 	if (valex == 0)
 		return (valex);
-	valhel = _ishelp(p, loop, av);
+	valhel = _ishelp(p, loop, av, m);
 	if (valhel == 0)
 		return (valhel);
 	valenv = _isenv(p, m);
@@ -32,8 +32,9 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e)
 /**
  * _noargv - shell form without filename at input
  * @argv: arguments in the input
+ * @envp: environment variables
  */
-void _noargv(char *argv[])
+void _noargv(char *argv[], char *envp[])
 {
 	char *line = NULL;
 	char **args = NULL, **m = NULL;
@@ -46,7 +47,7 @@ void _noargv(char *argv[])
 	{
 		if (loop == 0)
 		{
-			m = create_env();
+			m = create_env(envp);
 			for (e = 0; m[e] != NULL; e++)
 				;
 		}
@@ -59,7 +60,7 @@ void _noargv(char *argv[])
 			value = revision(args, loop, line, i, argv, m, e);
 			if (value != 0)
 			{
-				args = checkbin(args);
+				args = checkbin(args, m);
 				if (args)
 					_forky(args, line, i, loop, argv, e, m);
 			}

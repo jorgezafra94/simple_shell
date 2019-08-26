@@ -82,7 +82,8 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 
 	if (w == 1)
 	{
-		_fullcd(buf, _gethome());
+		_updateoldpwd(getcwd(buf, 2048), myenv);
+		_fullcd(buf, _gethome(myenv));
 		w++;
 	}
 	if (a[1] == NULL)
@@ -90,8 +91,8 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 		_cleancd(buf);
 		getcwd(buf, 2048);
 		_updateoldpwd(buf, myenv);
-		valor = chdir((const char *)_gethome());
-		_updatepwd(_gethome(), myenv);
+		valor = chdir((const char *)_gethome(myenv));
+		_updatepwd(_gethome(myenv), myenv);
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{

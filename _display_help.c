@@ -2,10 +2,11 @@
 
 /**
  * read_help - reads all builtins text file and prints it to POSIX stdout
+ * @m: copy of environment variables
  * Return: number of letters to write, otherwise 0.
  */
 
-ssize_t read_help(void)
+ssize_t read_help(char **m)
 {
 	int fd, r, w;
 	char *buf;
@@ -16,7 +17,7 @@ ssize_t read_help(void)
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	home = _gethome();
+	home = _gethome(m);
 	helpdir = str_concat(home, helpfiles);
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
@@ -47,10 +48,11 @@ ssize_t read_help(void)
 
 /**
  * read_cdhelp - reads cd text file and prints it to POSIX stdout
+ * @m: copy of environment variables
  * Return: number of letters to write, otherwise 0.
  */
 
-ssize_t read_cdhelp(void)
+ssize_t read_cdhelp(char **m)
 {
 	int fd, r, w;
 	char *buf;
@@ -61,7 +63,7 @@ ssize_t read_cdhelp(void)
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	home = _gethome();
+	home = _gethome(m);
 	helpdir = str_concat(home, helpfiles);
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
@@ -92,10 +94,11 @@ ssize_t read_cdhelp(void)
 
 /**
  * read_exithelp - reads exit text file and prints it to POSIX stdout
+ * @m: copy of environment variables
  * Return: number of letters to write, otherwise 0.
  */
 
-ssize_t read_exithelp(void)
+ssize_t read_exithelp(char **m)
 {
 	int fd, r, w;
 	char *buf;
@@ -106,7 +109,7 @@ ssize_t read_exithelp(void)
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	home = _gethome();
+	home = _gethome(m);
 	helpdir = str_concat(home, helpfiles);
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)
@@ -137,10 +140,11 @@ ssize_t read_exithelp(void)
 
 /**
  * read_helphelp - reads help text file and prints it to POSIX stdout
+ * @m: copy of environment variables
  * Return: number of letters to write, otherwise 0.
  */
 
-ssize_t read_helphelp(void)
+ssize_t read_helphelp(char **m)
 {
 	int fd, r, w;
 	char *buf;
@@ -151,7 +155,7 @@ ssize_t read_helphelp(void)
 	buf = malloc((sizeof(char) * letters + 1));
 	if (buf == NULL)
 		return (0);
-	home = _gethome();
+	home = _gethome(m);
 	helpdir = str_concat(home, helpfiles);
 	fd = open(helpdir, O_RDONLY);
 	if (fd == -1)

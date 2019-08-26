@@ -2,8 +2,9 @@
 /**
  * _yesargv - shell form without filename at input
  * @argv: arguments in the input
+ * @envp: environment variables
  */
-void _yesargv(char *argv[])
+void _yesargv(char *argv[], char *envp[])
 {
 	char *line = NULL;
 	char **args = NULL, **m = NULL;
@@ -16,7 +17,7 @@ void _yesargv(char *argv[])
 	{
 		if (loop == 0)
 		{
-			m = create_env();
+			m = create_env(envp);
 			for (e = 0; m[e] != NULL; e++)
 				;
 		}
@@ -29,7 +30,7 @@ void _yesargv(char *argv[])
 			value = revision(args, loop, line, i, argv, m, e);
 			if (value != 0)
 			{
-				args = checkbin(args);
+				args = checkbin(args, m);
 				if (args)
 					_forky(args, line, i, loop, argv, e, m);
 			}

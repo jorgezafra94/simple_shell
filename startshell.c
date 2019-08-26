@@ -5,15 +5,16 @@
  * @argv: arguments in the input
  * Return: 0 on Success
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *envp[])
 {
+
 	if (argc == 1)
 	{
-		_noargv(argv);
+		_noargv(argv, envp);
 	}
 	else if (argc == 2)
 	{
-		_yesargv(argv);
+		_yesargv(argv, envp);
 	}
 	else
 	{

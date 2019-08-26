@@ -25,7 +25,7 @@ void _forky(char **p, char *line, int a, int loop, char *v[], int e, char **m)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(p[0], p, environ) == -1)
+		if (execve(p[0], p, m) == -1)
 		{
 			_put_err(p, loop, 3, v);
 		}

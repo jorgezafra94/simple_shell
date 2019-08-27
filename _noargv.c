@@ -17,8 +17,8 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int *e)
 	int valunset = 0;
 
 	valunset = _isunsetenv(p, m, e, loop, av);
-        if (valunset == 0)
-                return (valunset);
+	if (valunset == 0)
+		return (valunset);
 	valex = _isexit(p, loop, li, i, av, m, *e);
 	if (valex == 0)
 		return (valex);
@@ -92,7 +92,8 @@ void _noargv(char *argv[], char *envp[])
 				;
 		}
 		line = _getline(ploop, m, e);
-		if (!((sem = semicolon(line, loop, argv)) == 1))
+		sem = semicolon(line, loop, argv);
+		if (!(sem == 1))
 		{
 			p = _strtoky2(line, ";\n");
 			while (p)

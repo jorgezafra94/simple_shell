@@ -76,17 +76,17 @@ void _builtinerr(char **p)
  */
 void _builtinerr2(char **p)
 {
-        char str1[9] = "unsetenv";
-        int i = 0, j = 0, cont = 0;
+	char str1[9] = "unsetenv";
+	int i = 0, j = 0, cont = 0;
 
-        while (p[0][j] != '\0')
-                j++;
-        if (j == 8)
-        {
-                for (; i < 8; i++)
-                        if (p[0][i] == str1[i])
-                                cont++;
-                if (cont == 8)
-                        _errorenv(p);
-        }
+	while (p[0][j] != '\0')
+		j++;
+	if (j == 8)
+	{
+		for (; i < 8; i++)
+			if (p[0][i] == str1[i])
+				cont++;
+		if (cont == 8)
+			_errorenv(p);
+	}
 }

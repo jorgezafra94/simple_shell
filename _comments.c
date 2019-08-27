@@ -1,11 +1,11 @@
-# include "shell.h"
+#include "shell.h"
 
 /**
- * semicolon - search if in the input there is a ; or a ;;
- *@line: complete input of user
- *@loop: number of actual loop
- *@argv: input argument
- *Return: 1 if find ; or ;; or 0 if not
+ * semicolon - search if in the input there is a ";" or a ";;"
+ * @line: complete input of user
+ * @loop: number of actual loop
+ * @argv: input argument
+ * Return: 1 if find ";" or ";;" or 0 if not
  */
 int semicolon(char *line, int loop, char **argv)
 {
@@ -29,12 +29,12 @@ int semicolon(char *line, int loop, char **argv)
 		{
 			valid = 1;
 			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
-                        write(STDERR_FILENO, ": ", 2);
-                        print_number(loop);
-                        write(STDERR_FILENO, ": ", 2);
-                        write(STDERR_FILENO, "Syntax error: ", 14);
-                        write(STDERR_FILENO, ";;", 2);
-                        write(STDERR_FILENO, " unexpected\n", 12);
+			write(STDERR_FILENO, ": ", 2);
+			print_number(loop);
+			write(STDERR_FILENO, ": ", 2);
+			write(STDERR_FILENO, "Syntax error: ", 14);
+			write(STDERR_FILENO, ";;", 2);
+			write(STDERR_FILENO, " unexpected\n", 12);
 			break;
 		}
 		cont++;
@@ -52,7 +52,6 @@ char *_comments(char *line)
 
 	while (line[c] != '\0')
 		c++;
-
 	while (line[a] != '\0')
 	{
 		if (line[0] == '#')

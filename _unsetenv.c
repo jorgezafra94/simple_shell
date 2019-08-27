@@ -4,6 +4,9 @@
  * _isunsetenv - finds if line input is unsetenv
  * @p: input of user, array of pointers
  * @myenv: copy of environmental variables
+ * @loop: loops counter
+ * @v: arguments in input
+ * @e: number of elements in myenv
  * Return: -1 if fails or 0 if success
  */
 int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[])
@@ -22,7 +25,7 @@ int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 		i++;
 	}
 	if (i == 8)
-                cont++;
+		cont++;
 	if (cont == 9)
 	{
 		_unsetenv(p, myenv, e, loop, v);
@@ -31,18 +34,22 @@ int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 	else if (cont == 8)
 	{
 		salida = 0;
-	        _put_err(p, loop, 3, v);
+		_put_err(p, loop, 3, v);
 	}
 	return (salida);
 }
 /**
  * _unsetenv - function to remove an environment variable
  * environ points to an array of pointers to strings called the "environment"
+ * @p: input of user, array of pointers
  * @myenv: icopy of environmental
+ * @loop: loops counter
+ * @v: arguments in input
+ * @e: number of elements in myenv
  */
 void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 {
-        int i, lg, j, k = 0, k2 = 0, k3 = 0,cont = 0;
+	int i, lg, j, k = 0, k2 = 0, k3 = 0, cont = 0;
 
 	lg = _strlen(p[1]);
 	for (i = 0; myenv[i] != NULL; i++, cont = 0)
@@ -51,7 +58,7 @@ void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 		{
 			if (p[1][j] == myenv[i][j])
 				cont++;
-	        }
+		}
 		if (cont == lg)
 			break;
 	}

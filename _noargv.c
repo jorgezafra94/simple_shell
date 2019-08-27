@@ -88,7 +88,10 @@ void _noargv(char *argv[], char *envp[])
 		}
 		line = _getline(ploop, m, e);
 		if (line[0] == ';')
+		{
 			perror("PAILA");
+			free(line);
+		}
 		else
 		{
 			p = _strtoky2(line, ";\n");

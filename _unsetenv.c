@@ -6,11 +6,12 @@
  * @myenv: copy of environmental variables
  * Return: -1 if fails or 0 if success
  */
-int _isunsetenv(char **p, char **myenv, int *e)
+int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 {
-	char str[9] = "unsetenv";
-	int i = 0, cont = 0;
+	char str[] = "unsetenv";
+	int i = 0, cont = 0, salida = -1;
 
+	i = 0;
 	while (p[0][i] != '\0')
 	{
 		if (i < 8)
@@ -20,21 +21,26 @@ int _isunsetenv(char **p, char **myenv, int *e)
 		}
 		i++;
 	}
-	if (cont == 8)
+	if (i == 8)
+                cont++;
+	if (cont == 9)
 	{
-		_unsetenv(p, myenv, e);
-		return (0);
+		_unsetenv(p, myenv, e, loop, v);
+		salida = 0;
 	}
-	/*if (p[1][i] == NULL)
-	  _put_err(p);*/
-	return (-1);
+	else if (cont == 8)
+	{
+		salida = 0;
+	        _put_err(p, loop, 3, v);
+	}
+	return (salida);
 }
 /**
  * _unsetenv - function to remove an environment variable
  * environ points to an array of pointers to strings called the "environment"
  * @myenv: icopy of environmental
  */
-void _unsetenv(char **p, char **myenv, int *e)
+void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 {
         int i, lg, j, k = 0, k2 = 0, k3 = 0,cont = 0;
 
@@ -45,23 +51,28 @@ void _unsetenv(char **p, char **myenv, int *e)
 		{
 			if (p[1][j] == myenv[i][j])
 				cont++;
-		}
+	        }
 		if (cont == lg)
 			break;
 	}
-	for (k = i; myenv[k] != NULL && myenv[k + 1] != NULL; k++)
+	if (cont == lg)
 	{
-		for (k2 = 0; myenv[k][k2] != '\0'; k2++)
-			myenv[k][k2] = 0;
-		for (k3 = 0; myenv[k + 1][k3] != '\0'; k3++)
-			;
-		if (k2 < k3)
-			myenv[k] = _realloc(myenv[k], k2, k3);
-		for (k2 = 0; myenv[k + 1][k2] != '\0'; k2++)
-			myenv[k][k2] = myenv[k + 1][k2];
+		for (k = i; myenv[k] != NULL && myenv[k + 1] != NULL; k++)
+		{
+			for (k2 = 0; myenv[k][k2] != '\0'; k2++)
+				myenv[k][k2] = 0;
+			for (k3 = 0; myenv[k + 1][k3] != '\0'; k3++)
+				;
+			if (k2 < k3)
+				myenv[k] = _realloc(myenv[k], k2, k3);
+			for (k2 = 0; myenv[k + 1][k2] != '\0'; k2++)
+				myenv[k][k2] = myenv[k + 1][k2];
+		}
+		free(myenv[k]);
+		myenv[k] = NULL;
+		*e = *e - 1;
+		free(myenv[k + 1]);
 	}
-	free(myenv[k]);
-	myenv[k] = NULL;
-	*e = *e - 1;
-	free(myenv[k + 1]);
+	else
+		_put_err(p, loop, 1, v);
 }

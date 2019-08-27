@@ -18,8 +18,10 @@ char **create_env(char *envp[]);
 void _updateoldpwd(char *buf, char **myenv);
 void _updatepwd(char *buf, char **myenv);
 
-int _isunsetenv(char **p, char **myenv, int *e);
-void _unsetenv(char **p, char **myenv, int *e);
+/* unsetenv*/
+int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[]);
+void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[]);
+void _errorenv(char **p);
 
 /* shell functions*/
 void _noargv(char *argv[], char *envp[]);
@@ -69,6 +71,7 @@ ssize_t read_helphelp(char **m);
 /* errors */
 void _put_err(char **p, int loop, int sig, char *v[]);
 void _builtinerr(char **p);
+void _builtinerr2(char **p);
 void _errorcd(char **p);
 void _errorexit(char **p);
 void _errorhelp(char **p);

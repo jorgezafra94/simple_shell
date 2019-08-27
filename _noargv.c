@@ -16,7 +16,7 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int *e)
 	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
 	int valunset = 0;
 
-	valunset = _isunsetenv(p, m, e);
+	valunset = _isunsetenv(p, m, e, loop, av);
         if (valunset == 0)
                 return (valunset);
 	valex = _isexit(p, loop, li, i, av, m, *e);

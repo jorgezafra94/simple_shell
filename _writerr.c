@@ -19,14 +19,15 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	if (pr == 2 || (pr == 3 && sig == 3))
 	{
 		write(STDERR_FILENO, v[0], _strlen(v[0]));
-		write(STDERR_FILENO, ":", 1);
-		write(STDERR_FILENO, " ", 1);
+		write(STDERR_FILENO, ": ", 2);
 		print_number(loop);
-		write(STDERR_FILENO, ":", 1);
-		write(STDERR_FILENO, " ", 1);
+		write(STDERR_FILENO, ": ", 2);
 	}
 	if (pr == 2)
+	{
 		_builtinerr(p);
+		_builtinerr2(p);
+	}
 	else if (pr == 3 && sig == 3)
 	{
 		_errorgarbage(p);
@@ -67,4 +68,25 @@ void _builtinerr(char **p)
 		if (cont2 == 4)
 			_errorhelp(p);
 	}
+}
+/**
+ * _builtinerr2 - writes the error
+ * @p: input pointer
+ * Return: nothing.
+ */
+void _builtinerr2(char **p)
+{
+        char str1[9] = "unsetenv";
+        int i = 0, j = 0, cont = 0;
+
+        while (p[0][j] != '\0')
+                j++;
+        if (j == 8)
+        {
+                for (; i < 8; i++)
+                        if (p[0][i] == str1[i])
+                                cont++;
+                if (cont == 8)
+                        _errorenv(p);
+        }
 }

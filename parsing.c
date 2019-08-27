@@ -11,6 +11,7 @@ int Counter(char *L, char *lim)
 
 	while (lim[ct2] != '\0')
 	{
+		ct = 0;
 		while (L && L[ct] != '\0')
 		{
 			if (L[ct] != lim[ct2])
@@ -36,7 +37,7 @@ char **parsing(char *line)
 
 	if (line == NULL)
 		return (NULL);
-	buffsize = Counter(line, " ");
+	buffsize = Counter(line, " \t");
 	p = _calloc((buffsize + 1), sizeof(char *));
 	if (!p)
 	{

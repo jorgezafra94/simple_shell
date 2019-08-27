@@ -13,11 +13,12 @@
  */
 int revision(char **p, int loop, char *li, int i, char *av[], char **m, int *e)
 {
-	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0, valunset = 0;
+	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
+	int valunset = 0;
 
 	valunset = _isunsetenv(p, m, e);
         if (valunset == 0)
-                return (valunset); 
+                return (valunset);
 	valex = _isexit(p, loop, li, i, av, m, *e);
 	if (valex == 0)
 		return (valex);
@@ -77,7 +78,7 @@ void functions(char *line, int loop, char *argv[], char **m, int *e, char *f)
 void _noargv(char *argv[], char *envp[])
 {
 	char *line = NULL, **m = NULL, *p = NULL, *pr1 = NULL;
-	int e = 0, *ploop, i = 0;
+	int e = 0, *ploop, i = 0, sem = 0;
 	static int loop;
 
 	loop = 0;
@@ -91,12 +92,7 @@ void _noargv(char *argv[], char *envp[])
 				;
 		}
 		line = _getline(ploop, m, e);
-		if (line[0] == ';')
-		{
-			perror("PAILA");
-			free(line);
-		}
-		else
+		if (!((sem = semicolon(line, loop, argv)) == 1))
 		{
 			p = _strtoky2(line, ";\n");
 			while (p)

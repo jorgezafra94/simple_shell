@@ -33,6 +33,7 @@ char *_getline(int *a, char **m, int e);
 char  *_getlineav(int *a, char **m, int e);
 char **parsing(char *line);
 char *_comments(char *line);
+int semicolon(char *line, int loop, char **argv);
 
 /*char _getline_av(char *buffer);*/
 void free_grid(char **grid, int height);
@@ -72,5 +73,6 @@ void _errorcd(char **p);
 void _errorexit(char **p);
 void _errorhelp(char **p);
 void _errorgarbage(char **p);
+void print_number(int n);
 
 #endif

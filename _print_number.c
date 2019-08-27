@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * print_number - prints all natural numbers
  * @n: parameter to print

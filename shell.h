@@ -48,6 +48,7 @@ char *_changeoldpwd(void);
 char *_getpwd(char **m);
 int _atoi(char *s);
 char *_strtoky(char *s, char *d);
+char *_strtoky2(char *s, char *d);
 
 #define SIZE 1024
 

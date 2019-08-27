@@ -1,18 +1,19 @@
 #include "shell.h"
 
 /**
- * _forky - program that creates process and execute
+ * _frk - program that creates process and execute
  * @p: array of pointer (args)
- * @line: input typed by the user
+ * @l: input typed by the user
  * @a: count of pointers
- * @loop: count of loops
+ * @L: count of loops
  * @v: arguments in input
  * @e: env length
  * @m: copy of environmental variable
+ * @f: complete input
  * Return: Nothing.
  */
 
-void _forky(char **p, char *line, int a, int loop, char *v[], int e, char **m)
+void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f)
 {
 	pid_t child_pid;
 	int status;
@@ -27,9 +28,10 @@ void _forky(char **p, char *line, int a, int loop, char *v[], int e, char **m)
 	{
 		if (execve(p[0], p, m) == -1)
 		{
-			_put_err(p, loop, 3, v);
+			_put_err(p, L, 3, v);
 		}
-		free(line);
+		free(f);
+		free(l);
 		free_grid(p, a);
 		free_grid(m, e);
 		/*printf("After execve\n");*/

@@ -24,6 +24,6 @@ void _yesargv(char *argv[], char *envp[])
 		if (line[0] == ';')
 			perror("PAILA");
 		else
-			functions(line, loop, argv, m, e);
+			functions(line, loop, argv, m, e, line);
 	}
 }

@@ -36,8 +36,9 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e)
  *@argv: argumnets
  *@m: copy of environment variables
  *@e: number of elements in m
+ *@f: complete input of user
  */
-void functions(char *line, int loop, char *argv[], char **m, int e)
+void functions(char *line, int loop, char *argv[], char **m, int e, char *f)
 {
 	char **args = NULL;
 	int value = 1, i = 0;
@@ -53,7 +54,7 @@ void functions(char *line, int loop, char *argv[], char **m, int e)
 		{
 			args = checkbin(args, m);
 			if (args)
-				_forky(args, line, i, loop, argv, e, m);
+				_frk(args, line, i, loop, argv, e, m, f);
 		}
 		free_grid(args, i);
 		free(line);
@@ -102,10 +103,10 @@ void _noargv(char *argv[], char *envp[])
 					pr1[i] = p[i];
 				pr1[i] = '\n';
 				pr1[i + 1] = '\0';
-				functions(pr1, loop, argv, m, e);
+				functions(pr1, loop, argv, m, e, line);
 				p = _strtoky2(NULL, ";\n");
 			}
-			free(line);
 		}
+		free(line);
 	}
 }

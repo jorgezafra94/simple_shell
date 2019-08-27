@@ -20,7 +20,7 @@ void _updatepwd(char *buf, char **myenv);
 /* shell functions*/
 void _noargv(char *argv[], char *envp[]);
 void _yesargv(char *argv[], char *envp[]);
-void functions(char *line, int loop, char *argv[], char **m, int e);
+void functions(char *line, int loop, char *argv[], char **m, int e, char *f);
 int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e);
 char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
@@ -32,7 +32,7 @@ char *_comments(char *line);
 
 /*char _getline_av(char *buffer);*/
 void free_grid(char **grid, int height);
-void _forky(char **p, char *line, int a, int loop, char *v[], int e, char **m);
+void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char **checkbin(char **b, char **m);
 void *_realloc2(char *a, char *p, unsigned int old, unsigned int new_size);

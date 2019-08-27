@@ -13,7 +13,7 @@ char *_comments(char *line)
 
 	while (line[a] != '\0')
 	{
-		if(line[0] == '#')
+		if (line[0] == '#')
 		{
 			flag = 1;
 			break;
@@ -27,7 +27,7 @@ char *_comments(char *line)
 	}
 	if (flag == 1)
 	{
-		for(; a < c; a++)
+		for (; a < c; a++)
 			line[a] = 0;
 	}
 	return (line);

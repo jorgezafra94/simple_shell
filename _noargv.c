@@ -30,10 +30,12 @@ int revision(char **p, int loop, char *li, int i, char *av[], char **m, int e)
 	return (other);
 }
 /**
- *
- *
- *
- *
+ * functions - realize all the funcitons
+ *@line: input of user
+ *@loop: number of loops
+ *@argv: argumnets
+ *@m: copy of environment variables
+ *@e: number of elements in m
  */
 void functions(char *line, int loop, char *argv[], char **m, int e)
 {

@@ -24,18 +24,22 @@ char *_getpwd(char **m)
 		if (cont == 4)
 			break;
 	}
-	while (m[i][k] != '\0')
-		k++;
-	pwd = _calloc(k + 1, sizeof(char));
-	if (pwd == NULL)
-		return (NULL);
-	k = 4;
-	while (m[i][k] != '\0')
+	if (cont == 4)
 	{
-		pwd[k - 4] = m[i][k];
-		k++;
+		while (m[i][k] != '\0')
+			k++;
+		pwd = _calloc(k + 1, sizeof(char));
+		if (pwd == NULL)
+			return (NULL);
+		k = 4;
+		while (m[i][k] != '\0')
+		{
+			pwd[k - 4] = m[i][k];
+			k++;
+		}
+		return (pwd);
 	}
-	return (pwd);
+	return (NULL);
 }
 /**
  * _verifypath - check if the path has a : at the begining
@@ -113,23 +117,27 @@ char *_getpath(char **m)
 			break;
 	}
 	k = cont;
-	while (m[i][k] != '\0')
+	if (cont == 5)
 	{
-		w++;
-		k++;
+		while (m[i][k] != '\0')
+		{
+			w++;
+			k++;
+		}
+		if (w == 0)
+			return (NULL);
+		path = _calloc(w + 1, sizeof(char));
+		if (path == NULL)
+			return (NULL);
+		k = 5;
+		while (m[i][k] != '\0')
+		{
+			path[k - 5] = m[i][k];
+			k++;
+		}
+		return (path);
 	}
-	if (w == 0)
-		return (NULL);
-	path = _calloc(w + 1, sizeof(char));
-	if (path == NULL)
-		return (NULL);
-	k = 5;
-	while (m[i][k] != '\0')
-	{
-		path[k - 5] = m[i][k];
-		k++;
-	}
-	return (path);
+	return (NULL);
 }
 /**
  * checkbin - checks if arg[0] has /bin/

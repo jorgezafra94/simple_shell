@@ -46,8 +46,10 @@ This shell supports the next builtin commands:
 
 To see the manual run:
 
-    $ man ./man_1_simple_shell  
+    $ man ./man_1_simple_shell
     
+Example:
+    	
 	man(1)                                                  Manual page for Simple_Shell           			man(1)                                
 
 	NAME
@@ -60,8 +62,7 @@ To see the manual run:
        	Command language interpreter that executes commands read from the standard input or from a file.
 
 	INVOCATION
-       	An  interactive  shell is one started without non-option arguments, just running ./hsh. Otherwise, when is started 	   non-interactively,
-       	to run a shell script, for example, the shell reads and execute the next command echo "pwd" | ./hsh.
+       	An  interactive  shell is one started without non-option arguments, just running ./hsh. Otherwise, when is started non-interactively, to run a shell script, for example, the shell reads and execute the next command echo "pwd" | ./hsh.
 	
 									.  .  .
 

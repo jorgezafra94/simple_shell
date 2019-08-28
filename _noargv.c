@@ -11,22 +11,25 @@
  * Return: -1 if the input is different to env or cd
  *or 0 if the input is cd or env
  */
-int rev(char **p, int L, char *li, char **v, char **m, int *e, char *f)
+int rev(char **p, int L, char *li, char **v, char ***m, int *e, char *f)
 {
 	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
-	int valunset = 0;
+	int valunset = 0, valset = 0;
 
-	valunset = _isunsetenv(p, m, e, L, v);
+	valunset = _isunsetenv(p, *m, e, L, v);
 	if (valunset == 0)
 		return (valunset);
-	valex = _isexit(p, L, li, v, m, f);
+	valset = _issetenv(p, m, e, L, v);
+	if (valset == 0)
+	return (valset);
+	valex = _isexit(p, L, li, v, *m, f);
 	if (valex == 0)
 		return (valex);
-	valhel = _ishelp(p, L, v, m);
+	valhel = _ishelp(p, L, v, *m);
 	if (valhel == 0)
 		return (valhel);
-	valenv = _isenv(p, m);
-	valcd = _iscd(p, L, v, m);
+	valenv = _isenv(p, *m);
+	valcd = _iscd(p, L, v, *m);
 	if (valenv == 0)
 		return (valenv);
 	if (valcd == 0)
@@ -42,7 +45,7 @@ int rev(char **p, int L, char *li, char **v, char **m, int *e, char *f)
  *@e: number of elements in m
  *@f: complete input of user
  */
-void functions(char *line, int loop, char *argv[], char **m, int *e, char *f)
+void functions(char *line, int loop, char *argv[], char ***m, int *e, char *f)
 {
 	char **args = NULL;
 	int value = 1, i = 0;
@@ -56,9 +59,9 @@ void functions(char *line, int loop, char *argv[], char **m, int *e, char *f)
 		value = rev(args, loop, line, argv, m, e, f);
 		if (value != 0)
 		{
-			args = checkbin(args, m);
+			args = checkbin(args, *m);
 			if (args)
-				_frk(args, line, i, loop, argv, *e, m, f);
+				_frk(args, line, i, loop, argv, *e, *m, f);
 		}
 		free_grid(args, i);
 		free(line);
@@ -103,7 +106,7 @@ void _noargv(char *argv[], char *envp[])
 					pr1[i] = p[i];
 				pr1[i] = '\n';
 				pr1[i + 1] = '\0';
-				functions(pr1, loop, argv, m, &e, line);
+				functions(pr1, loop, argv, &m, &e, line);
 				p = _strtoky2(NULL, ";\n");
 			}
 		}

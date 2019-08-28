@@ -18,6 +18,11 @@ char **create_env(char *envp[]);
 void _updateoldpwd(char *buf, char **myenv);
 void _updatepwd(char *buf, char **myenv);
 
+/*setenv*/
+int _issetenv(char **p, char ***myenv, int *e, int loop, char *v[]);
+void _setenv(char **p, char ***myenv, int *e, int loop, char *v[]);
+void _setenvcreat(char ***myenv, int *e, char *entirenv);
+
 /* unsetenv*/
 int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[]);
 void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[]);
@@ -26,8 +31,8 @@ void _errorenv(char **p);
 /* shell functions*/
 void _noargv(char *argv[], char *envp[]);
 void _yesargv(char *argv[], char *envp[]);
-void functions(char *line, int loop, char *argv[], char **m, int *e, char *f);
-int rev(char **p, int L, char *li, char **v, char **m, int *e, char *f);
+void functions(char *line, int loop, char *argv[], char ***m, int *e, char *f);
+int rev(char **p, int L, char *li, char **v, char ***m, int *e, char *f);
 char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);

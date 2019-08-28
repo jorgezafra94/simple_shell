@@ -17,9 +17,12 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	pr++;
 	if (sig == 3)
 		pr = 3;
-	if(sig == 4)
+	if (sig == 4)
 		pr = 4;
-	if (pr == 2 || (pr == 3 && sig == 3) ||(pr == 4 && sig == 4))
+	if (sig == 5)
+		pr = 5;
+	if (pr == 2 || (pr == 3 && sig == 3) || (pr == 4 && sig == 4)
+	    || (pr == 5 && sig == 5))
 	{
 		write(STDERR_FILENO, v[0], _strlen(v[0]));
 		write(STDERR_FILENO, ": ", 2);
@@ -27,10 +30,7 @@ void _put_err(char **p, int loop, int sig, char *v[])
 		write(STDERR_FILENO, ": ", 2);
 	}
 	if (pr == 2)
-	{
 		_builtinerr(p);
-		_builtinerr2(p);
-	}
 	else if (pr == 3 && sig == 3)
 	{
 		_errorgarbage(p);
@@ -41,6 +41,8 @@ void _put_err(char **p, int loop, int sig, char *v[])
 		write(STDOUT_FILENO, p[0], _strlen(p[0]));
 		write(STDOUT_FILENO, ": Permission denied\n", 20);
 	}
+	else if (pr == 5 && sig == 5)
+		_builtinerr2(p);
 }
 
 /**
@@ -84,7 +86,7 @@ void _builtinerr(char **p)
  */
 void _builtinerr2(char **p)
 {
-	char str1[9] = "unsetenv";
+	char str1[9] = "unsetenv", str2[7] = "setenv";
 	int i = 0, j = 0, cont = 0;
 
 	while (p[0][j] != '\0')
@@ -95,6 +97,14 @@ void _builtinerr2(char **p)
 			if (p[0][i] == str1[i])
 				cont++;
 		if (cont == 8)
+			_errorenv(p);
+	}
+	if (j == 6)
+	{
+		for (; i < 6; i++)
+			if (p[0][i] == str2[i])
+				cont++;
+		if (cont == 6)
 			_errorenv(p);
 	}
 }

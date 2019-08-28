@@ -28,7 +28,7 @@ char *_verifypath(char *path, char *pwd)
 			a++;
 			c++;
 		}
-		else if(path[a] == ':' && path[a + 1] == ':')
+		else if (path[a] == ':' && path[a + 1] == ':')
 		{
 			newpath = _calloc(c + 1, sizeof(char));
 			for (i = 0; i <= a; i++)
@@ -42,7 +42,7 @@ char *_verifypath(char *path, char *pwd)
 		}
 		a++;
 	}
-	return(path);
+	return (path);
 }
 /**
  *_getpath - get the string in PATH env

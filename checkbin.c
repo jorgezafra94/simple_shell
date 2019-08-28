@@ -7,34 +7,34 @@
 char *_getpwd(char **m)
 {
 	int i, j, k = 0, cont = 0;
-	char str[] = "OLDPWD=";
+	char str[] = "PWD=";
 	char *pwd;
 
 	for (i = 0; m[i] != NULL; i++)
 	{
 		for (j = 0; m[i][j] != '\0'; j++)
 		{
-			if (cont == 7)
+			if (cont == 4)
 				break;
 			if (m[i][j] == str[j])
 				cont++;
 			else
 				break;
 		}
-		if (cont == 7)
+		if (cont == 4)
 			break;
 	}
-	if (cont == 7)
+	if (cont == 4)
 	{
 		while (m[i][k] != '\0')
 			k++;
 		pwd = _calloc(k + 1, sizeof(char));
 		if (pwd == NULL)
 			return (NULL);
-		k = 7;
+		k = 4;
 		while (m[i][k] != '\0')
 		{
-			pwd[k - 7] = m[i][k];
+			pwd[k - 4] = m[i][k];
 			k++;
 		}
 		return (pwd);

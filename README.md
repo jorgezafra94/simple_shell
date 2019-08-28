@@ -32,6 +32,8 @@ This shell supports the next builtin commands:
     
     help - show help for a builtin command
     
+    pwd - Print the absolute pathname of the current working directory
+    
     unsetenv - Remove an environment variable
 
 ## Delimit and comment commands

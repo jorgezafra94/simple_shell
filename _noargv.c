@@ -14,14 +14,11 @@
 int rev(char **p, int L, char *li, char **v, char **m, int *e, char *f)
 {
 	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
-	int valunset = 0, valset = 0;
+	int valunset = 0;
 
 	valunset = _isunsetenv(p, m, e, L, v);
 	if (valunset == 0)
 		return (valunset);
-	valset = _issetenv(p, m, e, L, v);
-        if (valset == 0)
-                return (valset);
 	valex = _isexit(p, L, li, v, m, f);
 	if (valex == 0)
 		return (valex);

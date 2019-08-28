@@ -25,6 +25,7 @@ char *_verifypath(char *path, char *pwd)
 				newpath[i + 1] = path[i];
 			free(path);
 			path = newpath;
+			a++;
 			c++;
 		}
 		else if(path[a] == ':' && path[a + 1] == ':')
@@ -36,6 +37,7 @@ char *_verifypath(char *path, char *pwd)
 			for (i = i + 1; path[i] != '\0'; i++)
 				newpath[i] = path[i - 1];
 			free(path);
+			a++;
 			path = newpath;
 		}
 		a++;

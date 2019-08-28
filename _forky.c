@@ -1,5 +1,17 @@
 #include "shell.h"
+/**
+ * currentstatus - get the current status
+ * @status: get the pointer to the value inside  wait
+ * Return: the actual changed
+ */
+int currentstatus(int *status)
+{
+	static int actual;
 
+	if (status)
+		actual = *status;
+	return (actual);
+}
 /**
  * _frk - program that creates process and execute
  * @p: array of pointer (args)
@@ -16,7 +28,7 @@
 void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f)
 {
 	pid_t child_pid;
-	int status;
+	int ty = 0;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -34,11 +46,12 @@ void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f)
 		free(l);
 		free_grid(p, a);
 		free_grid(m, e);
-		/*printf("After execve\n");*/
 		exit(127);
 	}
 	else
 	{
-		wait(&status);
+		wait(&ty);
+		ty = ty % 255;
+		currentstatus(&ty);
 	}
 }

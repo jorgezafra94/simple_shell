@@ -36,6 +36,7 @@ char  *_getlineav(int *a, char **m, int e, char **av);
 char **parsing(char *line);
 char *_comments(char *line);
 int semicolon(char *line, int loop, char **argv);
+int currentstatus(int *status);
 
 /*char _getline_av(char *buffer);*/
 void free_grid(char **grid, int height);

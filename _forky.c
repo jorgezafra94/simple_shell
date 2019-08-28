@@ -28,7 +28,7 @@ int currentstatus(int *status)
 void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f)
 {
 	pid_t child_pid;
-	int ty = 0;
+	int ty = 0, status;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -50,8 +50,11 @@ void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f)
 	}
 	else
 	{
-		wait(&ty);
-		ty = ty % 255;
-		currentstatus(&ty);
+		waitpid(child_pid, &status, 0);
+		if ( WIFEXITED(status) )
+		{
+			ty = WEXITSTATUS(status);
+			currentstatus(&ty);
+		}
 	}
 }

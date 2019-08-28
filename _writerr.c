@@ -11,6 +11,7 @@ void _put_err(char **p, int loop, int sig, char *v[])
 {
 	static int pr = 1;
 
+
 	if (sig == 0)
 		pr = 0;
 	pr++;

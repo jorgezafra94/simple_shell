@@ -7,7 +7,7 @@
 void salida3(char **m, int e)
 {
 	free_grid(m, e);
-	exit(0);
+	exit(currentstatus(NULL));
 }
 /**
  * salida2 - out with double Ctrl+D
@@ -21,7 +21,7 @@ void salida2(char **m, int e, char *line)
 	free_grid(m, e);
 	write(STDIN_FILENO, "#cisfun$ ", 9);
 	write(STDIN_FILENO, "\n", 1);
-	exit(0);
+	exit(currentstatus(NULL));
 }
 /**
  * salida1 - normal out
@@ -32,7 +32,7 @@ void salida1(char **m, int e)
 {
 	free_grid(m, e);
 	write(STDIN_FILENO, "\n", 1);
-	exit(0);
+	exit(currentstatus(NULL));
 }
 /**
  * _getline - function to read what the user writes

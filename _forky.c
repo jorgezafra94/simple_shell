@@ -51,7 +51,7 @@ void _frk(char **p, char *l, int a, int L, char **v, int e, char **m, char *f)
 	else
 	{
 		wait(&ty);
-		ty = ty % 256;
+		ty = ty % 255;
 		currentstatus(&ty);
 	}
 }

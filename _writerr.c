@@ -38,8 +38,8 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	}
 	else if (pr == 4 && sig == 4)
 	{
-		write(STDOUT_FILENO, p[0], _strlen(p[0]));
-		write(STDOUT_FILENO, ": Permission denied\n", 20);
+		write(STDERR_FILENO, p[0], _strlen(p[0]));
+		write(STDERR_FILENO, ": Permission denied\n", 20);
 	}
 }
 

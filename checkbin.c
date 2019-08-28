@@ -1,46 +1,5 @@
 #include "shell.h"
-/**
-  * _getpwd - get the PWD env variable
-  * @m: copoy of environment variables
-  * Return: the string inside PWD env variable
-  */
-char *_getpwd(char **m)
-{
-	int i, j, k = 0, cont = 0;
-	char str[] = "PWD=";
-	char *pwd;
 
-	for (i = 0; m[i] != NULL; i++)
-	{
-		for (j = 0; m[i][j] != '\0'; j++)
-		{
-			if (cont == 4)
-				break;
-			if (m[i][j] == str[j])
-				cont++;
-			else
-				break;
-		}
-		if (cont == 4)
-			break;
-	}
-	if (cont == 4)
-	{
-		while (m[i][k] != '\0')
-			k++;
-		pwd = _calloc(k + 1, sizeof(char));
-		if (pwd == NULL)
-			return (NULL);
-		k = 4;
-		while (m[i][k] != '\0')
-		{
-			pwd[k - 4] = m[i][k];
-			k++;
-		}
-		return (pwd);
-	}
-	return (NULL);
-}
 /**
  * _verifypath - check if the path has a : at the begining
  * or if exist ::
@@ -64,7 +23,7 @@ char *_verifypath(char *path, char *pwd)
 	{
 		if (path[0] == dosp)
 		{ newpath = str_concat(pwd, path);
-			free(pwd), free(path);
+			free(path);
 			return (newpath);
 		}
 		else if (path[cont] == dosp && path[cont + 1] == dosp)
@@ -83,12 +42,10 @@ char *_verifypath(char *path, char *pwd)
 			newpath = str_concat(str1, newpath);
 			free(str1);
 			free(str2);
-			free(pwd);
 			free(path);
 			return (newpath);
 		}
 	}
-	free(pwd);
 	return (path);
 }
 /**
@@ -150,7 +107,7 @@ char **checkbin(char **b, char **m)
 {
 	unsigned int i = 0, j = 0, k = 0;
 	struct stat veri;
-	char *path, *tokens, *buf, *pwd, *newpath;
+	char *path, *tokens, *buf, *newpath;
 	char *valor;
 
 	i = _strlen(b[0]);
@@ -159,8 +116,7 @@ char **checkbin(char **b, char **m)
 	path = _getpath(m);
 	if (path == NULL)
 		return (b);
-	pwd = _getpwd(m);
-	newpath = _verifypath(path, pwd);
+	newpath = _verifypath(path, ".");
 	tokens = _strtoky(newpath, ":");
 	if (!tokens)
 		return (NULL);

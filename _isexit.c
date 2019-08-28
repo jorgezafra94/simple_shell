@@ -25,8 +25,8 @@ void _type(char **p, int L, char *l, int i, char **v, char **m, int e, char *f)
 	{
 		while (p[1][c] != '\0')
 		{
-			if (p[1][0] != '+' && p[1][0] != '-' &&
-			    p[1][c] < 48 || p[1][c] > 57)
+			if ((p[1][0] != '+' && p[1][0] != '-') &&
+			    (p[1][c] < 48 || p[1][c] > 57))
 			{
 				flag = 1;
 				break;

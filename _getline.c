@@ -6,8 +6,8 @@
  */
 void salida3(char **m, int e)
 {
-        free_grid(m, e);
-        exit(0);
+	free_grid(m, e);
+	exit(0);
 }
 /**
  * salida2 - out with double Ctrl+D
@@ -96,7 +96,7 @@ char  *_getlineav(int *a, char **m, int e, char **av)
 {
 	char letter[1] = {0}, *li = NULL;
 	size_t bz = 0;
-	static unsigned int num = 1, pos = 1;
+	static unsigned int num = 1;
 	static int  fd;
 
 	for (; (num != 0); bz = 0, free(li))
@@ -122,9 +122,7 @@ char  *_getlineav(int *a, char **m, int e, char **av)
 			li[bz] = letter[0], li[bz + 1] = '\n';
 			li[bz + 2] = '\0';
 			bz++;
-			pos++;
 		}
-		pos = num;
 		if (num == 0 && bz == 0)
 			break;
 		else if (li[0] != '\n')

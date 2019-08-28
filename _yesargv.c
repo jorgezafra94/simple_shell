@@ -7,7 +7,7 @@
 void _yesargv(char *argv[], char *envp[])
 {
 	char *line = NULL, **m = NULL, *p = NULL, *pr1 = NULL;
-	int e = 0, *ploop, i = 0, sem = 0;
+	int e = 0, *ploop, i, sem;
 	static int loop;
 
 	loop = 0;

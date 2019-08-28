@@ -6,8 +6,8 @@
  */
 void _yesargv(char *argv[], char *envp[])
 {
-	char *line = NULL, **m = NULL;
-	int e = 0, *ploop;
+	char *line = NULL, **m = NULL, *p = NULL, *pr1 = NULL;
+	int e = 0, *ploop, i = 0, sem = 0;
 	static int loop;
 
 	loop = 0;
@@ -20,10 +20,22 @@ void _yesargv(char *argv[], char *envp[])
 			for (e = 0; m[e] != NULL; e++)
 				;
 		}
-		line = _getlineav(ploop, m, e);
-		if (line[0] == ';')
-			perror("PAILA");
-		else
-			functions(line, loop, argv, m, &e, line);
+		line = _getlineav(ploop, m, e, argv);
+		sem = semicolon(line, loop, argv);
+		if (!(sem == 1))
+		{
+			p = _strtoky2(line, ";\n");
+			while (p)
+			{
+				pr1 = _calloc(_strlen(p) + 2, sizeof(char));
+				for (i = 0; p[i] != '\0'; i++)
+					pr1[i] = p[i];
+				pr1[i] = '\n';
+				pr1[i + 1] = '\0';
+				functions(pr1, loop, argv, m, &e, line);
+				p = _strtoky2(NULL, ";\n");
+			}
+		}
+		free(line);
 	}
 }

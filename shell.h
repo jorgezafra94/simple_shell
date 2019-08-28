@@ -18,6 +18,11 @@ char **create_env(char *envp[]);
 void _updateoldpwd(char *buf, char **myenv);
 void _updatepwd(char *buf, char **myenv);
 
+/*setenv*/
+int _issetenv(char **p, char **myenv, int *e, int loop, char *v[]);
+void _setenv(char **p, char **myenv, int *e, int loop, char *v[]);
+char **_setenvcreat(char **myenv, int *e, char *entirenv);
+
 /* unsetenv*/
 int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[]);
 void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[]);

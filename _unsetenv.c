@@ -84,6 +84,6 @@ void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 		free(myenv[k + 1]);
 	}
 	else
-		_put_err(p, loop, 1, v);
+		_put_err(p, loop, 5, v);
 }
 

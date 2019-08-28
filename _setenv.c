@@ -91,7 +91,7 @@ void _setenv(char **p, char ***myenv, int *e, int loop, char *v[])
 		_setenvcreat(myenv, e, entirenv);
 	}
 	else
-		_put_err(p, loop, 1, v);
+		_put_err(p, loop, 5, v);
 }
 /**
  * _setenvcreat - function to add or modify an environment variable

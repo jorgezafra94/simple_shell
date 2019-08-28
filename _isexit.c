@@ -15,7 +15,6 @@ void _type(char **p, int L, char *l, int i, char **v, char **m, int e, char *f)
 {
 	unsigned int  c = 0, flag = 0;
 	long int valor = 0;
-	int a = 2;
 
 	if (p[1] == NULL || (p[1][0] == '0' && p[1][1] == '\0'))
 	{
@@ -47,7 +46,8 @@ void _type(char **p, int L, char *l, int i, char **v, char **m, int e, char *f)
 			else if (valor < 0)
 			{
 				_put_err(p, L, 1, v);
-				currentstatus(&a);
+				free(l), free(f), free_grid(p, i);
+				free_grid(m, e), exit(2);
 			}
 			else
 				_put_err(p, L, 1, v);

@@ -38,7 +38,12 @@ char *_strtoky(char *s, char *d)
 	while (s[i] != '\0')
 	{
 		if (_sch(d, s[i]) == 0 && s[i + 1] == '\0')
-			i++;
+		{
+			ultimo = s + i + 1;
+			*ultimo = '\0';
+			s = s + j;
+			return (s);
+		}
 		else if (_sch(d, s[i]) == 0 && _sch(d, s[i + 1]) == 0)
 			i++;
 		else if (_sch(d, s[i]) == 0 && _sch(d, s[i + 1]) == 1)

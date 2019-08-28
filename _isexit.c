@@ -23,10 +23,21 @@ void _type(char **p, int L, char *l, int i, char **v, char **m, int e, char *f)
 	}
 	else
 	{
+		while (p[1][c] != '\0')
+		{
+			if (p[1][0] != '+' && p[1][0] != '-' &&
+			    p[1][c] < 48 || p[1][c] > 57)
+			{
+				flag = 1;
+				break;
+			}
+			c++;
+		}
 		if (flag == 1)
 			_put_err(p, L, 1, v);
 		else
-		{ valor = _atoi(p[1]);
+		{
+			valor = _atoi(p[1]);
 			if (!(valor > INT_MAX) && valor > 0)
 			{
 				valor = valor % 256;

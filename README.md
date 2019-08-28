@@ -62,7 +62,7 @@ Brief description of every file in this repository.
 | _signal.c | function to handle SIGINT signal |
 | _str_concat.c | function to create an array using malloc |
 | _strlen.c | function that returns the length of a string |
-|
+| _unsetenv.c | 
 | _strtoky.c | functions to cut a string into tokens depending of the delimit|
 | _writerr.c | functions to print the error for each builtin |
 | _yesargv.c | function to give shell form with filename as input |

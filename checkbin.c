@@ -14,27 +14,27 @@ char *_getpwd(char **m)
 	{
 		for (j = 0; m[i][j] != '\0'; j++)
 		{
-			if (cont == 4)
+			if (cont == 7)
 				break;
 			if (m[i][j] == str[j])
 				cont++;
 			else
 				break;
 		}
-		if (cont == 4)
+		if (cont == 7)
 			break;
 	}
-	if (cont == 4)
+	if (cont == 7)
 	{
 		while (m[i][k] != '\0')
 			k++;
 		pwd = _calloc(k + 1, sizeof(char));
 		if (pwd == NULL)
 			return (NULL);
-		k = 4;
+		k = 7;
 		while (m[i][k] != '\0')
 		{
-			pwd[k - 4] = m[i][k];
+			pwd[k - 7] = m[i][k];
 			k++;
 		}
 		return (pwd);

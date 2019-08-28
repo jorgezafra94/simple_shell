@@ -14,7 +14,7 @@ Command language interpreter that executes commands read from the standard input
 An interactive shell is one started without non-option arguments, just running \fB./hsh\fR. Otherwise, when is started non-interactively, to run a shell script, for example, the shell reads and execute the next command \fBecho "pwd" | ./hsh\fR.
 
 .SH COMMAND EXECUTION
-The first thing Simple_Shell does is to read the argument input form the user, after that the line read is split into tokens. After that, the Simple_Shell looks for the executable in paths specified by the PATH environment variable, then forks new process and executes it's code. Finally, prints the output and exits the prompt, sends the wait signal and the parent process terminates.
+The first thing Simple_Shell does is to read the argument input form the user, after that the line read is split into tokens. After that, the Simple_Shell looks in each token for the executable in paths specified by the PATH environment variable, then forks new process and executes it's code. Finally, prints the output and exits the prompt, sends the wait signal and the parent process terminates.
 
 .SH BUILT-IN COMMANDS
 Each builtin command is executed directly in the shell
@@ -32,7 +32,7 @@ Each builtin command is executed directly in the shell
 .B \fBunsetenv [variable]\fR - Remove an environment variable.
 
 .SH ENVIRONMENT
-Environment variables
+Some environment variables
 .TP
 .B \fBHOME\fR - The home directory of the current user; the default argument for the cd builtin command.
 .TP

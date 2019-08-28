@@ -149,4 +149,4 @@ help error:
 	#cisfun$
 
 ## Authors
-Diego Lopez and Jorge Zafra.
+Diego Lopez <927@holbertonschool.com> and Jorge Zafra <947@holbertonschool.com>.

@@ -1,6 +1,6 @@
 <p align="center"> <img width="335" height="105" src="https://www.holbertonschool.com/holberton-logo.png"></p>
 
-## Simple_Shell project
+## Simple_Shell Project
 
 This project is a collaboration between Diego López and Jorge Zafra, actual students of Software Engineering at Holberton School. It consists of developing and making our own UNIX command interpreter (Shell).
 

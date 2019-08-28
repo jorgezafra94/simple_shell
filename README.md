@@ -38,9 +38,10 @@ This shell supports the next builtin commands:
 
 ## Delimit and comment commands
 
-	;  -  The semicolon ( ; )
+	; -  The semicolon. command separator that allows to run a command on a single line placing the semicolon between
+       each command.
 	
-	# - The command number ( # )
+	# - The command number. Allows a word beginning with # and all remaining characters on that line to be ignored.
 
 ## Manual
 

@@ -7,7 +7,7 @@
 char *_getpwd(char **m)
 {
 	int i, j, k = 0, cont = 0;
-	char str[] = "PWD=";
+	char str[] = "OLDPWD=";
 	char *pwd;
 
 	for (i = 0; m[i] != NULL; i++)

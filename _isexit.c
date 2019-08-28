@@ -1,73 +1,78 @@
 #include "shell.h"
 #include <limits.h>
 /**
- *type_exit - get the type of exit
+ *_type - get the type of exit
  * @p: input user, array of pointers
- * @loop: counter of loops
- * @li: input user
+ * @L: counter of loops
+ * @l: input user
  * @i: number of pointers inside the array of pointers
  * @v: arguments in input
  * @m: copy of environmental variables
  * @e: number of elements in m
+ * @f: input complete
  */
-void type_exit(char **p, int loop, char *li, int i, char *v[], char **m, int e)
+void _type(char **p, int L, char *l, int i, char **v, char **m, int e, char *f)
 {
-	unsigned int  cont = 0, flag = 0;
+	unsigned int  c = 0, flag = 0;
 	long int valor = 0;
 
 	if (p[1] == NULL || (p[1][0] == '0' && p[1][1] == '\0'))
 	{
-		free(li);
-		free_grid(p, i);
-		free_grid(m, e);
+		free(l), free(f), free_grid(p, i), free_grid(m, e);
 		exit(currentstatus(NULL));
 	}
 	else
 	{
-		while (p[1][cont] != '\0')
+		while (p[1][c] != '\0')
 		{
-			if (p[1][cont] < 48 || p[1][cont] > 57)
+			if ((p[1][0] != '+' && p[1][0] != '-') &&
+			    (p[1][c] < 48 || p[1][c] > 57))
 			{
 				flag = 1;
 				break;
 			}
-			cont++;
+			c++;
 		}
 		if (flag == 1)
-			_put_err(p, loop, 1, v);
+			_put_err(p, L, 1, v);
 		else
-		{
-			valor = _atoi(p[1]);
-
-			if (!(valor > INT_MAX))
+		{ valor = _atoi(p[1]);
+			if (!(valor > INT_MAX) && valor > 0)
 			{
 				valor = valor % 256;
-				free(li);
-				free_grid(p, i);
-				free_grid(m, e);
-				exit(valor);
+				free(l), free(f), free_grid(p, i);
+				free_grid(m, e), exit(valor);
+			}
+			else if (valor < 0)
+			{
+				_put_err(p, L, 1, v);
+				free(l), free(f), free_grid(p, i);
+				free_grid(m, e), exit(2);
 			}
 			else
-				_put_err(p, loop, 1, v);
+				_put_err(p, L, 1, v);
 		}
 	}
 }
 /**
  * _isexit - finds if line input is exit therefore process termination
- * @p: input of user
- * @loop: loop counter
- * @li: input user
- * @x: number of pointers inside array of pointers
+ * @p: input of user, array of pointers
+ * @L: loop counter
+ * @l: input user
  * @v: arguments in input
  * @m: copy of environmental variables
- * @e: number of elements in m
+ * @f: complet input
  * Return: -1 if there is no exit or 0 if there is the word exit
  */
-int _isexit(char **p, int loop, char *li, int x, char *v[], char **m, int e)
+int _isexit(char **p, int L, char *l, char **v, char **m, char *f)
 {
 	char str[] = "exit";
-	int i, cont = 0, salida = -1;
+	int i, cont = 0, salida = -1, x = 0, e = 0;
 
+	for (x = 0; p[x] != NULL; x++)
+		;
+	for (e = 0; m[e] != NULL; e++)
+		;
 	i = 0;
 	while (p[0][i] != '\0')
 	{
@@ -83,13 +88,13 @@ int _isexit(char **p, int loop, char *li, int x, char *v[], char **m, int e)
 
 	if (cont == 5)
 	{
-		type_exit(p, loop, li, x, v, m, e);
+		_type(p, L, l, x, v, m, e, f);
 		salida = 0;
 	}
 	else if (cont == 4)
 	{
 		salida = 0;
-		_put_err(p, loop, 3, v);
+		_put_err(p, L, 3, v);
 	}
 	return (salida);
 }

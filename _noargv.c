@@ -2,31 +2,31 @@
 /**
  *rev - gets if the input of user is env, cd
  *@p: input user, array of pointers
- *@loop: counter of loops
+ *@L: counter of loops
  *@li: input user
- *@i:number of pointers inside array of pointers
- *@av: arguments in input
+ *@v: arguments in input
  *@m: copy of environmental variable
  *@e: number of elements in m
+ *@f: complete input
  * Return: -1 if the input is different to env or cd
  *or 0 if the input is cd or env
  */
-int rev(char **p, int loop, char *li, int i, char *av[], char **m, int *e)
+int rev(char **p, int L, char *li, char **v, char **m, int *e, char *f)
 {
 	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
 	int valunset = 0;
 
-	valunset = _isunsetenv(p, m, e, loop, av);
+	valunset = _isunsetenv(p, m, e, L, v);
 	if (valunset == 0)
 		return (valunset);
-	valex = _isexit(p, loop, li, i, av, m, *e);
+	valex = _isexit(p, L, li, v, m, f);
 	if (valex == 0)
 		return (valex);
-	valhel = _ishelp(p, loop, av, m);
+	valhel = _ishelp(p, L, v, m);
 	if (valhel == 0)
 		return (valhel);
 	valenv = _isenv(p, m);
-	valcd = _iscd(p, loop, av, m);
+	valcd = _iscd(p, L, v, m);
 	if (valenv == 0)
 		return (valenv);
 	if (valcd == 0)
@@ -53,7 +53,7 @@ void functions(char *line, int loop, char *argv[], char **m, int *e, char *f)
 	{
 		for (i = 0; args[i] != NULL; i++)
 			;
-		value = rev(args, loop, line, i, argv, m, e);
+		value = rev(args, loop, line, argv, m, e, f);
 		if (value != 0)
 		{
 			args = checkbin(args, m);

@@ -31,7 +31,13 @@ This shell supports the next builtin commands:
     exit - exit the shell
     
     help - show help for a builtin command
-  
+
+## Delimit and comment commands
+
+	;  -  The semicolon ( ; )
+	
+	# - The command number ( # )
+
 ## Manual
 
 To see the manual run:

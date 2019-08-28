@@ -17,7 +17,9 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	pr++;
 	if (sig == 3)
 		pr = 3;
-	if (pr == 2 || (pr == 3 && sig == 3))
+	if(sig == 4)
+		pr = 4;
+	if (pr == 2 || (pr == 3 && sig == 3) ||(pr == 4 && sig == 4))
 	{
 		write(STDERR_FILENO, v[0], _strlen(v[0]));
 		write(STDERR_FILENO, ": ", 2);
@@ -33,6 +35,11 @@ void _put_err(char **p, int loop, int sig, char *v[])
 	{
 		_errorgarbage(p);
 		pr = 1;
+	}
+	else if (pr == 4 && sig == 4)
+	{
+		write(STDOUT_FILENO, p[0], _strlen(p[0]));
+		write(STDOUT_FILENO, ": Permission denied\n", 20);
 	}
 }
 

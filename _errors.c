@@ -7,10 +7,13 @@
  */
 void _errorcd(char **p)
 {
+	int a = 2;
+
 	write(STDERR_FILENO, p[0], 2);
 	write(STDERR_FILENO, ": can't cd to ", 14);
 	write(STDERR_FILENO, p[1], _strlen(p[1]));
 	write(STDERR_FILENO, "\n", 1);
+	currentstatus(&a);
 }
 /**
  * _errorexit - writes the error
@@ -19,10 +22,13 @@ void _errorcd(char **p)
  */
 void _errorexit(char **p)
 {
+	int a = 2;
+
 	write(STDERR_FILENO, p[0], 4);
 	write(STDERR_FILENO, ": Illegal number: ", 18);
 	write(STDERR_FILENO, p[1], _strlen(p[1]));
 	write(STDERR_FILENO, "\n", 1);
+	currentstatus(&a);
 }
 /**
  * _errorhelp - writes the error
@@ -31,6 +37,8 @@ void _errorexit(char **p)
  */
 void _errorhelp(char **p)
 {
+	int a = 2;
+
 	write(STDERR_FILENO, p[0], 4);
 	write(STDERR_FILENO, ": no help topics match '", 24);
 	write(STDERR_FILENO, p[1], _strlen(p[1]));
@@ -39,6 +47,7 @@ void _errorhelp(char **p)
 	write(STDERR_FILENO, "' or info '", 11);
 	write(STDERR_FILENO, p[1], _strlen(p[1]));
 	write(STDERR_FILENO, "'\n", 2);
+	currentstatus(&a);
 }
 /**
  * _errorgarbage - writes the error
@@ -47,8 +56,11 @@ void _errorhelp(char **p)
  */
 void _errorgarbage(char **p)
 {
+	int a = 2;
+
 	write(STDERR_FILENO, p[0], _strlen(p[0]));
 	write(STDERR_FILENO, ": not found\n", 13);
+	currentstatus(&a);
 }
 /**
  * _errorenv - writes the error
@@ -57,8 +69,11 @@ void _errorgarbage(char **p)
  */
 void _errorenv(char **p)
 {
+	int a = 2;
+
 	write(STDERR_FILENO, p[0], _strlen(p[0]));
 	write(STDERR_FILENO, ": unable to add/rm variable ", 28);
 	write(STDERR_FILENO, p[1], _strlen(p[1]));
 	write(STDERR_FILENO, "\n", 1);
+	currentstatus(&a);
 }

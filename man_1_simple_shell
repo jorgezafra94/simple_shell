@@ -14,7 +14,7 @@ Command language interpreter that executes commands read from the standard input
 An interactive shell is one started without non-option arguments, just running \fB./hsh\fR. Otherwise, when is started non-interactively, to run a shell script, for example, the shell reads and execute the next command \fBecho "pwd" | ./hsh\fR.
 
 .SH COMMAND EXECUTION
-The first thing Simple_Shell does is to read the argument input form the user, after that the line read is split into tokens. Then, the Simple_Shell looks for the executable in paths specified by PATH environment variable. 
+The first thing Simple_Shell does is to read the argument input form the user, after that the line read is split into tokens. After that, the Simple_Shell looks for the executable in paths specified by the PATH environment variable, then forks new process and executes it's code. Finally, prints the output and exits the prompt, sends the wait signal and the parent process terminates.
 
 .SH BUILT-IN COMMANDS
 Each builtin command is executed directly in the shell
@@ -28,6 +28,9 @@ Each builtin command is executed directly in the shell
 .B \fBhelp [pattern]\fR - Display helpful information about builtin commands. If pattern is specified, help gives detailed help on all commands matching pattern.
 .TP
 .B \fBpwd\fR - Print the absolute pathname of the current working directory.
+.TP
+.B \fBunsetenv [variable]\fR - Remove an environment variable.
+
 .SH ENVIRONMENT
 Environment variables
 .TP
@@ -37,7 +40,14 @@ Environment variables
 .TP
 .B \fBPWD\fR - The absolute pathname for the current directory.
 .TP
-.B \fBOLDPWD\fR - The previous working directory as set by the cd command. 
+.B \fBOLDPWD\fR - The previous working directory as set by the cd command.
+
+.SH DELIMIT AND COMMENT COMMANDS
+Delimit commands are characters which will be used to split the string; Comment commands allow comments to be handled.
+.TP
+.B \fB;\fR - The semicolon ( ; ) is used as a command separator that allows to run a command on a single line placing the semicolon between each command.
+.TP
+.B \fB#\fR - The command number ( # ) allows a word beginning with #  and all remaining characters on that line to be ignored.
 
 .SH FILES
 .TP
@@ -46,6 +56,8 @@ Environment variables
 \fI_calloc.c\fR - function that allocates memory for an array
 .TP
 \fI_change.c\fR - functions that change the OLDPWD and PWD environment variables
+.TP
+\fI_comments.c\fR - function to handle the comments with the # command.
 .TP
 \fI_display_help.c\fR - functions that reads all builtins text files and prints it to POSIX stdout
 .TP
@@ -79,6 +91,8 @@ Environment variables
 .TP
 \fI_strtoky.c\fR - functions to cut a string into tokens depending of the delimit
 .TP
+\fI_unsetenv\fR - functions to remove an environment variable.
+.TP
 \fI_writerr.c\fR - functions to print the error for each builtin
 .TP
 \fI_yesargv.c\fR - function to give shell form with filename as input
@@ -99,7 +113,7 @@ Environment variables
 chdir (2), close (2), execve (2), exit (3), fflush (3), fork (2), free (3), getcwd (3), getline (3), malloc (3), open (2), read (2), stat (2), signal (2), strtok (3), wait (2), waitpid (2), write (2).
 
 .SH BUGS
-Valgrind errors when the command SPACE is keyed and the comand Ctrl^D.
+Not yet.
 
 .SH AUTHOR
 Written by Diego López and Jorge Zafra.

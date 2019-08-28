@@ -6,6 +6,6 @@
  */
 void _signal(int s)
 {
-	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
-		printf("Signal error: %i\n", s);
+	(void)s;
+	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
 }

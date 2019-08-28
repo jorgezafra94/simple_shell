@@ -27,7 +27,7 @@ void _errorenv(char **p);
 void _noargv(char *argv[], char *envp[]);
 void _yesargv(char *argv[], char *envp[]);
 void functions(char *line, int loop, char *argv[], char **m, int *e, char *f);
-int revision(char **p, int loop, char *li, int i, char *av[], char **m, int *e);
+int rev(char **p, int loop, char *li, int i, char *av[], char **m, int *e);
 char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);

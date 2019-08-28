@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- *revision - gets if the input of user is env, cd
+ *rev - gets if the input of user is env, cd
  *@p: input user, array of pointers
  *@loop: counter of loops
  *@li: input user
@@ -11,7 +11,7 @@
  * Return: -1 if the input is different to env or cd
  *or 0 if the input is cd or env
  */
-int revision(char **p, int loop, char *li, int i, char *av[], char **m, int *e)
+int rev(char **p, int loop, char *li, int i, char *av[], char **m, int *e)
 {
 	int valenv = 0, valcd = 0, other = -1, valex = 0, valhel = 0;
 	int valunset = 0;
@@ -53,7 +53,7 @@ void functions(char *line, int loop, char *argv[], char **m, int *e, char *f)
 	{
 		for (i = 0; args[i] != NULL; i++)
 			;
-		value = revision(args, loop, line, i, argv, m, e);
+		value = rev(args, loop, line, i, argv, m, e);
 		if (value != 0)
 		{
 			args = checkbin(args, m);

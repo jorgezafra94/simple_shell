@@ -12,14 +12,15 @@
  */
 void type_exit(char **p, int loop, char *li, int i, char *v[], char **m, int e)
 {
-	unsigned int valor = 0, cont = 0, flag = 0;
+	unsigned int  cont = 0, flag = 0;
+	long int valor = 0;
 
 	if (p[1] == NULL || (p[1][0] == '0' && p[1][1] == '\0'))
 	{
 		free(li);
 		free_grid(p, i);
 		free_grid(m, e);
-		exit(0);
+		exit(currentstatus(NULL));
 	}
 	else
 	{

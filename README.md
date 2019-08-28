@@ -31,6 +31,8 @@ This shell supports the next builtin commands:
     exit - exit the shell
     
     help - show help for a builtin command
+    
+    unsetenv - Remove an environment variable
 
 ## Delimit and comment commands
 

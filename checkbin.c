@@ -10,43 +10,37 @@
  */
 char *_verifypath(char *path, char *pwd)
 {
-	char *newpath = NULL, *str1 = NULL, *str2 = NULL, dosp = ':';
-	int cont, pa, pw, k1, k2;
+	int a = 0, c = 0, i = 0;
+	char *newpath = NULL;
 
-	if (path == NULL || pwd == NULL)
-		return (NULL);
-	for (pw = 0; pwd[pw] != '\0'; pw++)
-		;
-	for (pa = 0; path[pa] != '\0'; pa++)
-		;
-	for (cont = 0; path[cont] != '\0'; cont++)
+	while (path[c] != '\0')
+		c++;
+	while (path[a] != '\0')
 	{
-		if (path[0] == dosp)
-		{ newpath = str_concat(pwd, path);
-			free(path);
-			return (newpath);
-		}
-		else if (path[cont] == dosp && path[cont + 1] == dosp)
+		if (path[0] == ':')
 		{
-			str1 = _calloc(pa + 1, sizeof(char));
-			if (!str1)
-				return (NULL);
-			str2 = _calloc(pa + 1, sizeof(char));
-			if (!str2)
-				return (NULL);
-			for (k1 = 0; k1 <= cont; k1++)
-				str1[k1] = path[k1];
-			for (k2 = 0; path[k1] != '\0'; k2++, k1++)
-				str2[k2] = path[k1];
-			newpath = str_concat(pwd, str2);
-			newpath = str_concat(str1, newpath);
-			free(str1);
-			free(str2);
+			newpath = _calloc(c + 1, sizeof(char));
+			newpath[0] = pwd[0];
+			for (i = 0; path[i] != '\0'; i++)
+				newpath[i + 1] = path[i];
 			free(path);
-			return (newpath);
+			path = newpath;
+			c++;
 		}
+		else if(path[a] == ':' && path[a + 1] == ':')
+		{
+			newpath = _calloc(c + 1, sizeof(char));
+			for (i = 0; i <= a; i++)
+				newpath[i] = path[i];
+			newpath[i] = pwd[0];
+			for (i = i + 1; path[i] != '\0'; i++)
+				newpath[i] = path[i - 1];
+			free(path);
+			path = newpath;
+		}
+		a++;
 	}
-	return (path);
+	return(path);
 }
 /**
  *_getpath - get the string in PATH env

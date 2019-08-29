@@ -59,7 +59,7 @@ void _errorgarbage(char **p)
 	int a = 2;
 
 	write(STDERR_FILENO, p[0], _strlen(p[0]));
-	write(STDERR_FILENO, ": not found\n", 13);
+	write(STDERR_FILENO, ": not found\n", 12);
 	currentstatus(&a);
 }
 /**

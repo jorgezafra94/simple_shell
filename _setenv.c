@@ -108,19 +108,20 @@ void _setenvcreat(char ***myenv, int *e, char *entirenv)
 	int i = 0, k = 0;
 	char **new = NULL;
 
-	new = _calloc(*e + 1, sizeof(char *));
+	new = _calloc(*e + 2, sizeof(char *));
 	for (i = 0; (*myenv)[i] != NULL; i++)
 	{
 		for (k = 0; (*myenv)[i][k]; k++)
 			;
-		new[i] = _calloc(k, sizeof(char));
+		new[i] = _calloc(k + 1, sizeof(char));
 		for (k = 0; (*myenv)[i][k] != '\0'; k++)
 			new[i][k] = (*myenv)[i][k];
 	}
-	new[i] = _calloc(_strlen(entirenv), sizeof(char));
+	new[i] = _calloc(_strlen(entirenv) + 1, sizeof(char));
 	for (k = 0; entirenv[k] != '\0'; k++)
 		new[i][k] = entirenv[k];
-	*e = 1;
+	new[i + 1] = NULL;
+	*e = *e + 1;
 	free_grid((*myenv), *e);
-	*myenv = new;
+	(*myenv) = new;
 }

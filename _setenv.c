@@ -83,14 +83,15 @@ void _setenv(char **p, char ***myenv, int *e, int loop, char *v[])
 		}
 		else
 		{
-			myenv[i] = _realloc((*myenv)[i], myenvlen, p2len + 1);
+			(*myenv)[i] = _realloc((*myenv)[i], myenvlen, _strlen(entirenv));
 			for (k = 0; entirenv[k] != '\0'; k++)
 				(*myenv)[i][k] = entirenv[k];
-		} (*myenv)[k] = NULL, *e = *e;
+		} free(withequal), free(entirenv), *e = *e;
 	}
 	else if (cont != lg && p[1] != NULL && p[2] != NULL)
 	{
 		_setenvcreat(myenv, e, entirenv);
+		free(withequal), free(entirenv);
 	}
 	else
 		_put_err(p, loop, 5, v);
@@ -119,7 +120,7 @@ void _setenvcreat(char ***myenv, int *e, char *entirenv)
 	new[i] = _calloc(_strlen(entirenv), sizeof(char));
 	for (k = 0; entirenv[k] != '\0'; k++)
 		new[i][k] = entirenv[k];
-
+	*e = 1;
 	free_grid((*myenv), *e);
 	*myenv = new;
 }

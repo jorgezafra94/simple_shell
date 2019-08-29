@@ -73,7 +73,6 @@ void _errorenv(char **p)
 
 	write(STDERR_FILENO, p[0], _strlen(p[0]));
 	write(STDERR_FILENO, ": unable to add/rm variable ", 28);
-	write(STDERR_FILENO, p[1], _strlen(p[1]));
 	write(STDERR_FILENO, "\n", 1);
 	currentstatus(&a);
 }

@@ -32,7 +32,7 @@ void _yesargv(char *argv[], char *envp[])
 					pr1[i] = p[i];
 				pr1[i] = '\n';
 				pr1[i + 1] = '\0';
-				functions(pr1, loop, argv, m, &e, line);
+				functions(pr1, loop, argv, &m, &e, line);
 				p = _strtoky2(NULL, ";\n");
 			}
 		}

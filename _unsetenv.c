@@ -28,7 +28,10 @@ int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 		cont++;
 	if (cont == 9)
 	{
-		_unsetenv(p, myenv, e, loop, v);
+		if (p[1] != NULL)
+			_unsetenv(p, myenv, e, loop, v);
+		else
+			_put_err(p, loop, 5, v);
 		salida = 0;
 	}
 	else if (cont == 8)
@@ -81,5 +84,6 @@ void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 		free(myenv[k + 1]);
 	}
 	else
-		_put_err(p, loop, 1, v);
+		_put_err(p, loop, 5, v);
 }
+

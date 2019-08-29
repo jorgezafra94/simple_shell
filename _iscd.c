@@ -75,13 +75,16 @@ void _fullcd(char *f, char *aux)
  */
 void _cd(char **a, int loop, char *v[], char **myenv)
 {
-	int valor = 0;
+	int valor = 0, z = 0;
 	static char buf[2048];
 	static int w = 1;
-	char aux[2048] = {0};
+	char *home, aux[2048] = {0};
 
+	currentstatus(&z);
 	if (w == 1)
-	{
+	{ home = _gethome(myenv);
+		if (!home)
+			getcwd(home, 2048);
 		_updateoldpwd(getcwd(buf, 2048), myenv);
 		_fullcd(buf, _gethome(myenv));
 		w++;
@@ -96,19 +99,16 @@ void _cd(char **a, int loop, char *v[], char **myenv)
 	}
 	else if (a[1][0] == '-' && a[1][1] == '\0')
 	{
-		_cleancd(aux);
-		getcwd(aux, 2048);
+		_cleancd(aux), getcwd(aux, 2048);
 		_updateoldpwd(aux, myenv);
 		write(STDOUT_FILENO, buf, 2048);
 		write(STDOUT_FILENO, "\n", 1);
 		valor = chdir((const char *) buf);
-		_updatepwd(buf, myenv);
-		_fullcd(buf, aux);
+		_updatepwd(buf, myenv), _fullcd(buf, aux);
 	}
 	else
 	{
-		_cleancd(buf);
-		getcwd(buf, 2048);
+		_cleancd(buf), getcwd(buf, 2048);
 		_updateoldpwd(buf, myenv);
 		valor = chdir((const char *)a[1]);
 		_updatepwd(a[1], myenv);

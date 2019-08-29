@@ -72,8 +72,7 @@ void _setenv(char **p, char ***myenv, int *e, int loop, char *v[])
 	}
 	if (cont == lg)
 	{
-		myenvlen = _strlen((*myenv)[i]);
-		p2len = _strlen(p[2]);
+		myenvlen = _strlen((*myenv)[i]), p2len = _strlen(p[2]);
 		if (p2len < myenvlen)
 		{
 			for (k = 0; entirenv[k] != '\0'; k++)

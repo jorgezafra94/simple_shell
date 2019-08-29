@@ -9,7 +9,7 @@ char *_gethome(char **m)
 {
 	int i, j, k, cont = 0;
 	char str[] = "HOME=";
-	char *home;
+	char *home = NULL;
 
 	for (i = 0; m[i] != NULL; i++)
 	{
@@ -25,10 +25,13 @@ char *_gethome(char **m)
 		if (cont == 5)
 			break;
 	}
-	home = m[i];
-	for (k = 0; k < 5; k++)
+	if (cont == 5)
 	{
-		home++;
+		home = m[i];
+		for (k = 0; k < 5; k++)
+		{
+			home++;
+		}
 	}
 	return (home);
 }

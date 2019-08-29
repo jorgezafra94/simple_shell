@@ -33,11 +33,13 @@ int _isunsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 		else
 			_put_err(p, loop, 5, v);
 		salida = 0;
+		currentstatus(&salida);
 	}
 	else if (cont == 8)
 	{
 		salida = 0;
 		_put_err(p, loop, 3, v);
+		currentstatus(&salida);
 	}
 	return (salida);
 }

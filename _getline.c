@@ -104,6 +104,8 @@ char  *_getlineav(int *a, char **m, int e, char **av)
 		fd = open(av[1], O_RDONLY);
 		if (fd == -1)
 		{ close(fd), free_grid(m, e);
+			write(STDERR_FILENO, av[0], _strlen(av[0]));
+			write(STDERR_FILENO, ": 0: ", 5);
 			write(STDERR_FILENO, "Can't open ", 11);
 			write(STDERR_FILENO, av[1], _strlen(av[1]));
 			write(STDERR_FILENO, "\n", 1), exit(127);
@@ -129,9 +131,6 @@ char  *_getlineav(int *a, char **m, int e, char **av)
 			return (li);
 	}
 	if (num == 0)
-	{
-		close(fd);
-		salida3(m, e);
-	}
+		close(fd), salida3(m, e);
 	return (li);
 }

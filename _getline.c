@@ -103,9 +103,10 @@ char  *_getlineav(int *a, char **m, int e, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (fd == -1)
-		{
-			close(fd);
-			return (NULL);
+		{ close(fd), free_grid(m, e);
+			write(STDERR_FILENO, "Can't open ", 11);
+			write(STDERR_FILENO, av[1], _strlen(av[1]));
+			write(STDERR_FILENO, "\n", 1), exit(127);
 		}
 		*a = *a + 1;
 		while ((num = read(fd, letter, 1)) > 0)
@@ -120,8 +121,7 @@ char  *_getlineav(int *a, char **m, int e, char **av)
 				break;
 			}
 			li[bz] = letter[0], li[bz + 1] = '\n';
-			li[bz + 2] = '\0';
-			bz++;
+			li[bz + 2] = '\0', bz++;
 		}
 		if (num == 0 && bz == 0)
 			break;
